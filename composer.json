@@ -1,0 +1,26 @@
+{
+  "name": "jakubenglicky/sms-manager",
+  "type": "library",
+  "description": "PHP SDK for SMS Manager",
+  "keywords": ["smsmanager","sms","smsclient"],
+  "authors": [
+    {
+      "name": "Jakub Englický",
+      "email": "jakubenglicky@gmail.com"
+    }
+  ],
+  "autoload": {
+    "classmap": ["src/"]
+  },
+  "require": {
+    "guzzlehttp/guzzle": "^6.3"
+  },
+
+  "require-dev": {
+    "tracy/tracy": "^2.4",
+    "latte/latte": "^2.4",
+    "nette/tester": "^2.0",
+    "dg/composer-cleaner": "^1.1",
+    "squizlabs/php_codesniffer": "*"
+  }
+}
