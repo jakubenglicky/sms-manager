@@ -2,4 +2,4 @@
 
 namespace jakubenglicky\SmsManager\Exceptions;
 
-class EmptyTextException extends \Exception {}
+class TextException extends \Exception {}
