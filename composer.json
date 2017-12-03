@@ -1,6 +1,7 @@
 {
   "name": "jakubenglicky/sms-manager",
   "type": "library",
+  "license": "MIT",
   "description": "PHP SDK for SMS Manager",
   "keywords": ["smsmanager","sms","smsclient"],
   "authors": [
