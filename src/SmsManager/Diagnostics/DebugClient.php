@@ -36,7 +36,7 @@ class DebugClient implements IClient
 
 		$id = uniqid();
 
-		if( $message->getText() != '') {
+		if( $message->getBody() != '') {
 			file_put_contents($this->tempDir . '/' . $id . '.sms', $data);
 			return new Response('OK|' . $id .'|' . $message->getNumbers());
 		} else {
