@@ -2,6 +2,9 @@
 
 namespace jakubenglicky\SmsManager;
 
+use jakubenglicky\SmsManager\Exceptions\TextException;
+use jakubenglicky\SmsManager\Exceptions\UndefinedNumberException;
+
 class Message
 {
     /**
@@ -37,6 +40,10 @@ class Message
      */
     public function setTo(array $numbers)
     {
+        if (count($numbers) < 1) {
+            throw new UndefinedNumberException('Define at least one number!', 201);
+        }
+
         $this->numbers = $numbers;
     }
 
@@ -46,6 +53,10 @@ class Message
      */
     public function setBody($text)
     {
+        if (empty($text)) {
+            throw new TextException('Text of SMS does not exist or is too long!', 202);
+        }
+
         $this->text = $text;
     }
 
@@ -62,7 +73,7 @@ class Message
      * Get text
      * @return string
      */
-    public function getText()
+    public function getBody()
     {
         return $this->text;
     }

@@ -47,7 +47,7 @@ class Client implements IClient
                     'password' => $this->password,
                     'number' => $message->getNumbers(),
                     'gateway' => $message->getMessageType(),
-                    'message' => $message->getText(),
+                    'message' => $message->getBody(),
                 ]
             ]);
 
