@@ -1,15 +1,15 @@
 <?php
 
 /**
- * Part of jakubenglicky\sms-manager
+ * Part of jakubenglicky/sms-manager
  * @author Jakub Englický
  */
 
-namespace jakubenglicky\SmsManager\Http;
+namespace jakubenglicky\SmsManager\Http\Response;
 
 use Psr\Http\Message\StreamInterface;
 
-class Response
+class Sent
 {
     /**
      * @var string $body
@@ -27,9 +27,9 @@ class Response
     private $code;
 
     /**
-     * @var int $messageId
+     * @var int $requestId
      */
-    private $messageId;
+    private $requestId;
 
     /**
      * @var array $recepitiens
@@ -50,7 +50,7 @@ class Response
         if ($items[0] === 'OK') {
             $this->sent = true;
             $this->code = 200;
-            $this->messageId = $items[1];
+            $this->requestId = $items[1];
             $this->recepitiens = explode(',', $items[2]);
         }
     }
@@ -82,9 +82,9 @@ class Response
     /**
      * @return int
      */
-    public function getMessageId():int
+    public function getRequestId():int
     {
-        return $this->messageId;
+        return $this->requestId;
     }
 
     /**

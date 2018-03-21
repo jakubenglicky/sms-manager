@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Part of jakubenglicky\sms-manager
+ * Part of jakubenglicky/sms-manager
  * @author Jakub Englický
  */
 
-namespace jakubenglicky\SmsManager\Http;
+namespace jakubenglicky\SmsManager\Http\Response;
 
 use jakubenglicky\SmsManager\Exceptions\ApiException;
 use jakubenglicky\SmsManager\Exceptions\ContentException;
@@ -17,7 +17,7 @@ use jakubenglicky\SmsManager\Exceptions\UndefinedNumberException;
 use jakubenglicky\SmsManager\Exceptions\UnknownMessageTypeException;
 use jakubenglicky\SmsManager\Exceptions\WrongDataFormatException;
 
-class ErrorResponse
+class Error
 {
     /**
      * ErrorResponse constructor.

@@ -1,6 +1,8 @@
 SMS Manager PHP SDK
 ===========
-Library for sending SMS via http://smsmanager.cz/
+Library for sending SMS via https://smsmanager.cz/
+
+Information about HTTP Request API https://smsmanager.cz/api/http
 
 Instalation:
 -----------
