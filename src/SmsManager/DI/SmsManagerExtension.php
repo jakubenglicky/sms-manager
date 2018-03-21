@@ -5,7 +5,7 @@
  * @author Jakub Englický
  */
 
-namespace jakubenglicky\SmsManager\DI\SmsManagerExtension;
+namespace jakubenglicky\SmsManager\DI;
 
 use Nette\DI\CompilerExtension;
 use jakubenglicky\SmsManager\IClient;
