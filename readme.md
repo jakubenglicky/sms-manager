@@ -11,20 +11,18 @@ Instalation:
 Easy using:
 -----
 
-	$msg = new \jakubenglicky\SmsManager\Message();
+	$msg = new \jakubenglicky\SmsManager\Message\Message();
     $msg->setTo([420777111222]);
     $msg->setBody('Message text');
 
-    $client = new \jakubenglicky\SmsManager\Http\Client('user','password',FALSE);
+    $client = new \jakubenglicky\SmsManager\Http\Client('api-key');
     $client->send($msg);
 
 
 Nette DI:
 ------
 	extensions:
-    	    smsmanager: jakubenglicky\SmsManager\DI\SmsManagerExtension\SmsManagerExtension
+		smsmanager: jakubenglicky\SmsManager\DI\SmsManagerExtension
 
     smsmanager:
-        username: 'sms-manager-user'
-        password: 'sms-manager-password'
-        hashed: false
+    	apiKey: 'sms-manager-api-key'
