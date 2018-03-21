@@ -2,6 +2,7 @@ language: php
 php:
   - '7.0'
   - '7.1'
+  - '7.2'
 
 before_install:
     # turn off XDebug
@@ -12,7 +13,7 @@ install:
 
 script:
     - vendor/bin/phpcs --standard=ruleset.xml --extensions=php,phpt src/ tests/
-
+    - if [ "$TRAVIS_PHP_VERSION" == "7.2" ]; then vendor/bin/phpstan analyse -l 7 src; fi
 
 notifications:
     email: false
