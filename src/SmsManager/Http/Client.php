@@ -1,62 +1,55 @@
 <?php
 
+/**
+ * Part of jakubenglicky\sms-manager
+ * @author Jakub Englický
+ */
+
 namespace jakubenglicky\SmsManager\Http;
 
 use GuzzleHttp;
 use jakubenglicky\SmsManager\IClient;
-use jakubenglicky\SmsManager\Message;
+use jakubenglicky\SmsManager\Message\Message;
 
 class Client implements IClient
 {
     /**
-     * SMS Manager login
-     * @var string
+     * SMS Manager ApiKey
+     * @var string $apiKey
      */
-    private $username;
-
-    /**
-     * SMS Manager password
-     * @var string
-     */
-    private $password;
+    private $apiKey;
 
     /**
      * Client constructor.
-     * @param string $username
-     * @param string $password
-     * @param bool $hashed
+     * @param string $apiKey
      */
-    public function __construct($username, $password, $hashed = FALSE)
+    public function __construct(string $apiKey)
     {
-        $this->username = $username;
-        ($hashed) ? $this->password = $password : $this->password = sha1($password);
+        $this->apiKey = $apiKey;
     }
 
     /**
      * Send SMS via HTTP GET request
      * @param Message $message
+     * @throws \Exception
+     * @return Response|ErrorResponse
      */
-    public function send(Message $message)
+    public function send(Message $message):object
     {
         $client = new GuzzleHttp\Client();
 
         try {
-            $res = $client->request('GET', 'https://http-api.smsmanager.cz/Send', [
-                'query' => [
-                    'username' => $this->username,
-                    'password' => $this->password,
-                    'number' => $message->getNumbers(),
+            $res = $client->post('https://http-api.smsmanager.cz/Send', [
+                'form_params' => [
+                    'apikey' => $this->apiKey,
+                    'number' => implode(',', $message->getNumbers()),
                     'gateway' => $message->getMessageType(),
                     'message' => $message->getBody(),
                 ]
             ]);
-
-           return new Response($res->getBody());
-
-        } catch (GuzzleHttp\Exception\ClientException $clientEx) {
+            return new Response($res->getBody());
+        } catch (\Exception $clientEx) {
             return new ErrorResponse($clientEx);
-        } catch (\Exception $exception) {
-            throw new \Exception($exception->getMessage(),$exception->getCode());
         }
     }
 }

@@ -2,11 +2,11 @@
 
 namespace jakubenglicky\SmsManager\Tests;
 
-use jakubenglicky\SmsManager\Message;
+use jakubenglicky\SmsManager\Message\Message;
 use Tester\Assert;
 use Tester\TestCase;
 
-require_once "bootstrap.php";
+require_once __DIR__ ."/bootstrap.php";
 
  /**
  * @testCase

@@ -1,6 +1,11 @@
 <?php
 
-namespace jakubenglicky\SmsManager;
+/**
+ * Part of jakubenglicky\sms-manager
+ * @author Jakub Englický
+ */
+
+namespace jakubenglicky\SmsManager\Message;
 
 use jakubenglicky\SmsManager\Exceptions\TextException;
 use jakubenglicky\SmsManager\Exceptions\UndefinedNumberException;
@@ -13,32 +18,27 @@ class Message
     private $numbers;
 
     /**
-     * @var string
+     * @var string $messageType
      */
     private $messageType;
 
     /**
-     * @var string
+     * @var string $text
      */
     private $text;
 
-    /**
-     * Types of message type (gateway)
-     */
-    const MessageTypeEconomy = 'economy';
-    const MessageTypeHigh = 'high';
-    const MessageTypeLowCost = 'lowcost';
 
     public function __construct()
     {
-        $this->setMessageType();
+        $this->setMessageType(MessageType::ECONOMY);
     }
 
     /**
      * Set array of recepitiens
      * @param array $numbers
+     * @throws UndefinedNumberException
      */
-    public function setTo(array $numbers)
+    public function setTo(array $numbers):void
     {
         if (count($numbers) < 1) {
             throw new UndefinedNumberException('Define at least one number!', 201);
@@ -49,9 +49,10 @@ class Message
 
     /**
      * Set body of SMS
-     * @param $text
+     * @param string $text
+     * @throws TextException
      */
-    public function setBody($text)
+    public function setBody(string $text):void
     {
         if (empty($text)) {
             throw new TextException('Text of SMS does not exist or is too long!', 202);
@@ -62,9 +63,9 @@ class Message
 
     /**
      * Set message (gateway) type
-     * @param $type
+     * @param string $type
      */
-    public function setMessageType($type = self::MessageTypeEconomy)
+    public function setMessageType(string $type):void
     {
         $this->messageType = $type;
     }
@@ -73,7 +74,7 @@ class Message
      * Get text
      * @return string
      */
-    public function getBody()
+    public function getBody():string
     {
         return $this->text;
     }
@@ -82,19 +83,17 @@ class Message
      * Get numbers in string for API
      * @return array
      */
-    public function getNumbers()
+    public function getNumbers():array
     {
-        return implode(',',$this->numbers);
+        return $this->numbers;
     }
 
     /**
      * Get string of message type
      * @return string
      */
-    public function getMessageType()
+    public function getMessageType():string
     {
         return $this->messageType;
     }
-
-
 }

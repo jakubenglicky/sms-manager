@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Part of jakubenglicky\sms-manager
+ * @author Jakub Englický
+ */
+
 namespace jakubenglicky\SmsManager\Exceptions;
 
-class UndefinedNumberException extends \Exception {}
+class UndefinedNumberException extends \Exception
+{
+}
