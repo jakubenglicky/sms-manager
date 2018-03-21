@@ -1,3 +1,6 @@
+[![Downloads this Month](https://img.shields.io/packagist/dm/jakubenglicky/sms-manager.svg)](https://packagist.org/packages/jakubenglicky/sms-manager)
+[![Build](https://travis-ci.org/jakubenglicky/sms-manager.svg?branch=master)](https://travis-ci.org/jakubenglicky/sms-manager)
+
 SMS Manager PHP SDK
 ===========
 Library for sending SMS via https://smsmanager.cz/

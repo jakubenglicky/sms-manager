@@ -44,7 +44,7 @@ class Client implements IClient
      * @throws \Exception
      * @return Sent|Error
      */
-    public function send(Message $message):object
+    public function send(Message $message)
     {
         try {
             $res = $this->client->post('https://http-api.smsmanager.cz/Send', [
@@ -65,7 +65,7 @@ class Client implements IClient
      * Get User Info from SMS Manager account
      * @return UserInfo|Error
      */
-    public function getUserInfo():object
+    public function getUserInfo()
     {
         try {
             $res = $this->client->post('https://http-api.smsmanager.cz/GetUserInfo', [
