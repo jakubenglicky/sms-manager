@@ -15,7 +15,7 @@ class Message
     /**
      * @var array of phone numbers
      */
-    private $numbers;
+    private $recepitiens;
 
     /**
      * @var string $messageType
@@ -35,16 +35,16 @@ class Message
 
     /**
      * Set array of recepitiens
-     * @param array $numbers
+     * @param array $recepitiens
      * @throws UndefinedNumberException
      */
-    public function setTo(array $numbers):void
+    public function setTo(array $recepitiens):void
     {
-        if (count($numbers) < 1) {
+        if (count($recepitiens) < 1) {
             throw new UndefinedNumberException('Define at least one number!', 201);
         }
 
-        $this->numbers = $numbers;
+        $this->recepitiens = $recepitiens;
     }
 
     /**
@@ -83,9 +83,9 @@ class Message
      * Get numbers in string for API
      * @return array
      */
-    public function getNumbers():array
+    public function getRecepitiens():array
     {
-        return $this->numbers;
+        return $this->recepitiens;
     }
 
     /**

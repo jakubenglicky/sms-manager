@@ -76,7 +76,7 @@ class Error
             }
 
             if ($exception->getCode() === 500 || $exception->getCode() === 503) {
-                throw new ApiException('Unspecified problem on the SMS Manager side. You can contact support@smsmanager.cz');
+                throw new ApiException('Unspecified problem on the SMS Manager side. You can contact support@smsmanager.cz', $exception->getCode());
             }
         } else {
             throw new \Exception($exception->getMessage(), $exception->getCode());

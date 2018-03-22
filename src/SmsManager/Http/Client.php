@@ -9,7 +9,6 @@ namespace jakubenglicky\SmsManager\Http;
 
 use GuzzleHttp;
 use jakubenglicky\SmsManager\Http\Response\Error;
-use jakubenglicky\SmsManager\Http\Response\RequestStatus;
 use jakubenglicky\SmsManager\Http\Response\Sent;
 use jakubenglicky\SmsManager\Http\Response\UserInfo;
 use jakubenglicky\SmsManager\IClient;
@@ -50,12 +49,12 @@ class Client implements IClient
             $res = $this->client->post('https://http-api.smsmanager.cz/Send', [
                 'form_params' => [
                     'apikey' => $this->apiKey,
-                    'number' => implode(',', $message->getNumbers()),
+                    'number' => implode(',', $message->getRecepitiens()),
                     'gateway' => $message->getMessageType(),
                     'message' => $message->getBody(),
                 ]
             ]);
-            return new Sent($res->getBody());
+            return new Sent($res, $message);
         } catch (\Exception $clientEx) {
             return new Error($clientEx);
         }
@@ -73,7 +72,7 @@ class Client implements IClient
                     'apikey' => $this->apiKey
                 ]
             ]);
-            return new UserInfo($res->getBody());
+            return new UserInfo($res);
         } catch (\Exception $clientEx) {
             return new Error($clientEx);
         }

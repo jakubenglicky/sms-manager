@@ -7,7 +7,7 @@
 
 namespace jakubenglicky\SmsManager\Http\Response;
 
-use Psr\Http\Message\StreamInterface;
+use Psr\Http\Message\ResponseInterface;
 
 class UserInfo
 {
@@ -33,11 +33,11 @@ class UserInfo
 
     /**
      * UserInfo constructor.
-     * @param StreamInterface $response
+     * @param ResponseInterface $response
      */
-    public function __construct($response)
+    public function __construct(ResponseInterface $response)
     {
-        $this->body = trim($response);
+        $this->body = trim($response->getBody());
 
         $items = explode('|', $this->body);
 

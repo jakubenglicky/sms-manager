@@ -7,7 +7,8 @@
 
 namespace jakubenglicky\SmsManager\Http\Response;
 
-use Psr\Http\Message\StreamInterface;
+use jakubenglicky\SmsManager\Message\Message;
+use Psr\Http\Message\ResponseInterface;
 
 class Sent
 {
@@ -36,14 +37,19 @@ class Sent
      */
     private $recepitiens;
 
+    /**
+     * @var Message
+     */
+    private $message;
 
     /**
      * ApiResponse constructor.
-     * @param StreamInterface $response
+     * @param ResponseInterface $response
      */
-    public function __construct($response)
+    public function __construct(ResponseInterface $response, Message $message)
     {
-        $this->body = trim($response);
+        $this->body = trim($response->getBody());
+        $this->message = $message;
 
         $items = explode('|', $this->body);
 
@@ -56,6 +62,7 @@ class Sent
     }
 
     /**
+     * Get info about sent
      * @return bool
      */
     public function wasSent():bool
@@ -64,6 +71,7 @@ class Sent
     }
 
     /**
+     * Get HTTP status code
      * @return int
      */
     public function getCode():int
@@ -72,6 +80,7 @@ class Sent
     }
 
     /**
+     * Get full response body
      * @return string
      */
     public function getBody():string
@@ -80,6 +89,7 @@ class Sent
     }
 
     /**
+     * Get request SMS Manager ID
      * @return int
      */
     public function getRequestId():int
@@ -88,10 +98,19 @@ class Sent
     }
 
     /**
+     * Get array of recepitiens numbers
      * @return array
      */
     public function getRecepitiens():array
     {
         return $this->recepitiens;
+    }
+
+    /**
+     * @return Message
+     */
+    public function getMessage()
+    {
+        return $this->message;
     }
 }
