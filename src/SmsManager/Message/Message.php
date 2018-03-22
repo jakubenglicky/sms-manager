@@ -38,7 +38,7 @@ class Message
      * @param array $recepitiens
      * @throws UndefinedNumberException
      */
-    public function setTo(array $recepitiens):void
+    public function setTo(array $recepitiens)
     {
         if (count($recepitiens) < 1) {
             throw new UndefinedNumberException('Define at least one number!', 201);
@@ -52,7 +52,7 @@ class Message
      * @param string $text
      * @throws TextException
      */
-    public function setBody(string $text):void
+    public function setBody(string $text)
     {
         if (empty($text)) {
             throw new TextException('Text of SMS does not exist or is too long!', 202);
@@ -65,7 +65,7 @@ class Message
      * Set message (gateway) type
      * @param string $type
      */
-    public function setMessageType(string $type):void
+    public function setMessageType(string $type)
     {
         $this->messageType = $type;
     }
