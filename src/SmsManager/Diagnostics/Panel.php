@@ -40,7 +40,7 @@ class Panel implements IBarPanel
         }
 
         $result = [];
-        foreach($messages as $sms) {
+        foreach ($messages as $sms) {
             if ($sms != '.' && $sms != '..') {
                 $data = explode('|', file_get_contents($this->tempDir . '/' . $sms));
 
@@ -73,6 +73,6 @@ class Panel implements IBarPanel
             'count' => $count,
         ];
 
-        return $this->lt->renderToString(__DIR__ . '/templates/tab.latte',$params);
+        return $this->lt->renderToString(__DIR__ . '/templates/tab.latte', $params);
     }
 }
