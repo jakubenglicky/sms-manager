@@ -7,8 +7,9 @@
 
 namespace jakubenglicky\SmsManager\Diagnostics;
 
-use jakubenglicky\SmsManager\Diagnostics\Response;
+use jakubenglicky\SmsManager\Http\Response\Error;
 use jakubenglicky\SmsManager\Http\Response\Sent;
+use jakubenglicky\SmsManager\Http\Response\UserInfo;
 use jakubenglicky\SmsManager\IClient;
 use jakubenglicky\SmsManager\Message\Message;
 
@@ -21,7 +22,7 @@ class DebugClient implements IClient
 
     /**
      * DebugClient constructor.
-     * @param $tempDir
+     * @param string $tempDir
      */
     public function __construct($tempDir)
     {
@@ -32,7 +33,7 @@ class DebugClient implements IClient
     /**
      * Fake send for debugging
      * @param Message $message
-     * @return Response
+     * @return Sent
      */
     public function send(Message $message)
     {

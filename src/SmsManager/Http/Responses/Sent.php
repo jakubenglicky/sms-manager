@@ -58,6 +58,9 @@ class Sent
             $this->code = 200;
             $this->requestId = $items[1];
             $this->recepitiens = explode(',', $items[2]);
+        } else {
+            $this->sent = false;
+            $this->code = $items[1];
         }
     }
 
