@@ -1,3 +1,5 @@
 parameters:
 	autoload_directories:
 		- ./src/SmsManager/Diagnostics
+	excludes_analyse:
+		- ./src/SmsManager/Diagnostics/Panel.php

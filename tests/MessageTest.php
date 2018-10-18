@@ -24,7 +24,7 @@ class MessageTest extends TestCase
         $this->message = new Message();
 
         $this->message->setBody('Test message');
-        $this->message->getMessageType(MessageType::ECONOMY);
+        $this->message->setMessageType(MessageType::ECONOMY);
     }
 
     public function testInstance()
@@ -36,13 +36,13 @@ class MessageTest extends TestCase
     {
         $this->message->setTo([420722111333]);
 
-        Assert::true(is_array($this->message->getRecepitiens()));
-        Assert::same(420722111333, $this->message->getRecepitiens()[0]);
+        Assert::true(is_array($this->message->getRecipients()));
+        Assert::same(420722111333, $this->message->getRecipients()[0]);
 
         $this->message->setTo([420722111333,733456879]);
 
-        Assert::true(is_array($this->message->getRecepitiens()));
-        Assert::same(733456879, $this->message->getRecepitiens()[1]);
+        Assert::true(is_array($this->message->getRecipients()));
+        Assert::same(733456879, $this->message->getRecipients()[1]);
     }
 
     public function testSetBody()

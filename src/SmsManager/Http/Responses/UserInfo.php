@@ -1,16 +1,20 @@
-<?php
+<?php declare(strict_types = 1);
 
 /**
  * Part of jakubenglicky/sms-manager
+ *
  * @author Jakub Englický
  */
 
 namespace jakubenglicky\SmsManager\Http\Response;
 
 use Psr\Http\Message\ResponseInterface;
+use function explode;
+use function trim;
 
-class UserInfo
+final class UserInfo
 {
+
     /**
      * @var string $body
      */
@@ -21,9 +25,7 @@ class UserInfo
      */
     private $credit;
 
-    /**
-     * @var string $sender
-     */
+    /** @var string $sender */
     private $sender;
 
     /**
@@ -33,49 +35,54 @@ class UserInfo
 
     /**
      * UserInfo constructor.
-     * @param ResponseInterface $response
+     *
+     * @param \Psr\Http\Message\ResponseInterface $response
      */
     public function __construct(ResponseInterface $response)
     {
-        $this->body = trim($response->getBody());
+        $this->body = \trim((string)$response->getBody());
 
         $items = explode('|', $this->body);
 
-        list($this->credit, $this->sender, $this->messageType) = $items;
+        [$this->credit, $this->sender, $this->messageType] = $items;
     }
 
     /**
      * Get full response message
+     *
      * @return string
      */
-    public function getBody():string
+    public function getBody(): string
     {
         return $this->body;
     }
 
     /**
      * Get credit info
+     *
      * @return float
      */
-    public function getCreditInfo():float
+    public function getCreditInfo(): float
     {
-        return $this->credit;
+        return (float) $this->credit;
     }
 
     /**
      * Get sender
+     *
      * @return string
      */
-    public function getSender():string
+    public function getSender(): string
     {
         return $this->sender;
     }
 
     /**
      * Get default message type
+     *
      * @return string
      */
-    public function getDefaultMessageType():string
+    public function getDefaultMessageType(): string
     {
         return $this->messageType;
     }

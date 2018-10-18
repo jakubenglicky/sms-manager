@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /**
  * Part of jakubenglicky/sms-manager
@@ -10,12 +10,12 @@ namespace jakubenglicky\SmsManager\Message;
 use jakubenglicky\SmsManager\Exceptions\TextException;
 use jakubenglicky\SmsManager\Exceptions\UndefinedNumberException;
 
-class Message
+final class Message
 {
     /**
-     * @var array of phone numbers
+     * @var array of recipients
      */
-    private $recepitiens;
+    private $recipients;
 
     /**
      * @var string $messageType
@@ -34,17 +34,17 @@ class Message
     }
 
     /**
-     * Set array of recepitiens
-     * @param array $recepitiens
+     * Set array of recipients
+     * @param array $recipients
      * @throws UndefinedNumberException
      */
-    public function setTo(array $recepitiens)
+    public function setTo(array $recipients):void
     {
-        if (count($recepitiens) < 1) {
+        if (empty($recipients)) {
             throw new UndefinedNumberException('Define at least one number!', 201);
         }
 
-        $this->recepitiens = $recepitiens;
+        $this->recipients = $recipients;
     }
 
     /**
@@ -52,7 +52,7 @@ class Message
      * @param string $text
      * @throws TextException
      */
-    public function setBody(string $text)
+    public function setBody(string $text):void
     {
         if (empty($text)) {
             throw new TextException('Text of SMS does not exist or is too long!', 202);
@@ -65,27 +65,35 @@ class Message
      * Set message (gateway) type
      * @param string $type
      */
-    public function setMessageType(string $type)
+    public function setMessageType(string $type):void
     {
         $this->messageType = $type;
     }
 
     /**
      * Get text
+     * @throws TextException
      * @return string
      */
     public function getBody():string
     {
+        if (empty($this->text)) {
+            throw new TextException('Text of SMS does not exist or is too long!', 202);
+        }
         return $this->text;
     }
 
     /**
      * Get numbers in string for API
+     * @throws UndefinedNumberException
      * @return array
      */
-    public function getRecepitiens():array
+    public function getRecipients():array
     {
-        return $this->recepitiens;
+        if (empty($this->recipients)) {
+            throw new UndefinedNumberException('Define at least one number!', 201);
+        }
+        return $this->recipients;
     }
 
     /**

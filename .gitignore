@@ -2,4 +2,4 @@ vendor/
 .idea/
 composer.lock
 test.php
-temp
+tmp

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /**
  * Part of jakubenglicky/sms-manager
@@ -10,7 +10,7 @@ namespace jakubenglicky\SmsManager\Http\Response;
 use jakubenglicky\SmsManager\Message\Message;
 use Psr\Http\Message\ResponseInterface;
 
-class Sent
+final class Sent
 {
     /**
      * @var string $body
@@ -33,9 +33,9 @@ class Sent
     private $requestId;
 
     /**
-     * @var array $recepitiens
+     * @var array $numbers
      */
-    private $recepitiens;
+    private $recipients;
 
     /**
      * @var Message
@@ -48,7 +48,7 @@ class Sent
      */
     public function __construct(ResponseInterface $response, Message $message)
     {
-        $this->body = trim($response->getBody());
+        $this->body = trim((string)$response->getBody());
         $this->message = $message;
 
         $items = explode('|', $this->body);
@@ -56,11 +56,11 @@ class Sent
         if ($items[0] === 'OK') {
             $this->sent = true;
             $this->code = 200;
-            $this->requestId = $items[1];
-            $this->recepitiens = explode(',', $items[2]);
+            $this->requestId = (int)$items[1];
+            $this->recipients = explode(',', $items[2]);
         } else {
             $this->sent = false;
-            $this->code = $items[1];
+            $this->code = (int)$items[1];
         }
     }
 
@@ -104,15 +104,15 @@ class Sent
      * Get array of recepitiens numbers
      * @return array
      */
-    public function getRecepitiens():array
+    public function getRecipients():array
     {
-        return $this->recepitiens;
+        return $this->recipients;
     }
 
     /**
      * @return Message
      */
-    public function getMessage()
+    public function getMessage(): Message
     {
         return $this->message;
     }

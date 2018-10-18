@@ -1,14 +1,16 @@
-<?php
+<?php declare(strict_types = 1);
 
 /**
  * Part of jakubenglicky/sms-manager
+ *
  * @author Jakub Englický
  */
 
 namespace jakubenglicky\SmsManager\Message;
 
-class MessageType
+final class MessageType
 {
+
     const ECONOMY = 'economy';
 
     const HIGH = 'high';
