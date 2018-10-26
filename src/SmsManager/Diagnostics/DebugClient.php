@@ -33,7 +33,9 @@ final class DebugClient implements IClient
     /**
      * Fake send for debugging
      * @param Message $message
-     * @return Sent
+     * @return Error|Sent
+     * @throws \jakubenglicky\SmsManager\Exceptions\TextException
+     * @throws \jakubenglicky\SmsManager\Exceptions\UndefinedNumberException
      */
     public function send(Message $message)
     {

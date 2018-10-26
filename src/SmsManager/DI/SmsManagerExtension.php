@@ -13,7 +13,6 @@ use Nette\DI\CompilerExtension;
 
 class SmsManagerExtension extends CompilerExtension
 {
-
     public function loadConfiguration(): void
     {
         $config = $this->getConfig();
@@ -24,11 +23,10 @@ class SmsManagerExtension extends CompilerExtension
 
         $builder = $this->getContainerBuilder();
 
-        $smsmanager = $builder->addDefinition('smsmanager')
-            ->setClass(IClient::class);
-
-        $smsmanager->setFactory('jakubenglicky\SmsManager\Http\Client', [
-            $config['apiKey'],
-        ]);
+        $builder->addDefinition('smsmanager')
+            ->setImplement(IClient::class)
+            ->setFactory('jakubenglicky\SmsManager\Http\Client', [
+                $config['apiKey'],
+            ]);
     }
 }

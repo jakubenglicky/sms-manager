@@ -14,12 +14,12 @@
   "require": {
     "php": "^7.1",
     "guzzlehttp/guzzle": "^6.3",
-    "smartemailing/types": "^1.0"
+    "smartemailing/types": "^1.0",
+    "tracy/tracy": "^2.4",
+    "latte/latte": "^2.4"
   },
 
   "require-dev": {
-    "tracy/tracy": "^2.4",
-    "latte/latte": "^2.4",
     "nette/tester": "^2.0",
     "nette/di": "^2.4",
     "squizlabs/php_codesniffer": "*",
