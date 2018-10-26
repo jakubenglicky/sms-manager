@@ -22,7 +22,6 @@ class SmsManagerExtension extends CompilerExtension
         $builder = $this->getContainerBuilder();
 
         $builder->addDefinition('smsmanager')
-            ->setFactory(Client::class, [$this->config['apiKey']]
-            );
+            ->setFactory(Client::class, [$this->config['apiKey']]);
     }
 }
