@@ -1,18 +1,19 @@
-<?php
+<?php declare(strict_types = 1);
 
 /**
  * Part of jakubenglicky/sms-manager
+ *
  * @author Jakub Englický
  */
 
 namespace jakubenglicky\SmsManager\DI;
 
-use Nette\DI\CompilerExtension;
 use jakubenglicky\SmsManager\IClient;
+use Nette\DI\CompilerExtension;
 
 class SmsManagerExtension extends CompilerExtension
 {
-    public function loadConfiguration()
+    public function loadConfiguration(): void
     {
         $config = $this->getConfig();
 
@@ -22,11 +23,10 @@ class SmsManagerExtension extends CompilerExtension
 
         $builder = $this->getContainerBuilder();
 
-        $smsmanager = $builder->addDefinition('smsmanager')
-            ->setClass(IClient::class);
-
-        $smsmanager->setFactory('jakubenglicky\SmsManager\Http\Client', [
-            $config['apiKey']
-        ]);
+        $builder->addDefinition('smsmanager')
+            ->setImplement(IClient::class)
+            ->setFactory('jakubenglicky\SmsManager\Http\Client', [
+                $config['apiKey'],
+            ]);
     }
 }

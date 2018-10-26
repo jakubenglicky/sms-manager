@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /**
  * Part of jakubenglicky/sms-manager
@@ -9,13 +9,16 @@ namespace jakubenglicky\SmsManager\Message;
 
 use jakubenglicky\SmsManager\Exceptions\TextException;
 use jakubenglicky\SmsManager\Exceptions\UndefinedNumberException;
+use jakubenglicky\SmsManager\Exceptions\WrongDataFormatException;
+use SmartEmailing\Types\InvalidTypeException;
+use SmartEmailing\Types\PhoneNumber;
 
-class Message
+final class Message
 {
     /**
-     * @var array of phone numbers
+     * @var array|null
      */
-    private $recepitiens;
+    private $recipients;
 
     /**
      * @var string $messageType
@@ -34,17 +37,27 @@ class Message
     }
 
     /**
-     * Set array of recepitiens
-     * @param array $recepitiens
+     * Set array of numbers
+     * @param array $numbers
      * @throws UndefinedNumberException
+     * @throws WrongDataFormatException
      */
-    public function setTo(array $recepitiens)
+    public function setTo(array $numbers):void
     {
-        if (count($recepitiens) < 1) {
+        if (empty($numbers)) {
             throw new UndefinedNumberException('Define at least one number!', 201);
         }
 
-        $this->recepitiens = $recepitiens;
+        $recipients = null;
+
+        foreach ($numbers as $number) {
+            try {
+                $recipients[] = Phonenumber::from($number);
+            } catch (InvalidTypeException $invalidTypeException) {
+                throw new WrongDataFormatException($invalidTypeException->getMessage());
+            }
+        }
+        $this->recipients = $recipients;
     }
 
     /**
@@ -52,12 +65,11 @@ class Message
      * @param string $text
      * @throws TextException
      */
-    public function setBody(string $text)
+    public function setBody(string $text):void
     {
         if (empty($text)) {
             throw new TextException('Text of SMS does not exist or is too long!', 202);
         }
-
         $this->text = $text;
     }
 
@@ -65,27 +77,45 @@ class Message
      * Set message (gateway) type
      * @param string $type
      */
-    public function setMessageType(string $type)
+    public function setMessageType(string $type):void
     {
         $this->messageType = $type;
     }
 
     /**
      * Get text
+     * @throws TextException
      * @return string
      */
     public function getBody():string
     {
+        if (empty($this->text)) {
+            throw new TextException('Text of SMS does not exist or is too long!', 202);
+        }
         return $this->text;
     }
 
     /**
-     * Get numbers in string for API
+     * Get array of PhoneNumber objects
+     * @throws UndefinedNumberException
      * @return array
      */
-    public function getRecepitiens():array
+    public function getRecipients():array
     {
-        return $this->recepitiens;
+        if (empty($this->recipients)) {
+            throw new UndefinedNumberException('Define at least one number!', 201);
+        }
+        return $this->recipients;
+    }
+
+    /**
+     * Return numbers in comma separate string
+     * @return string
+     * @throws UndefinedNumberException
+     */
+    public function getCommaSeparateNumbers():string
+    {
+        return implode(',', $this->getRecipients());
     }
 
     /**
@@ -95,5 +125,14 @@ class Message
     public function getMessageType():string
     {
         return $this->messageType;
+    }
+
+    /**
+     * @deprecated
+     * @throws UndefinedNumberException
+     */
+    public function getRecepitiens()
+    {
+        return $this->getRecipients();
     }
 }

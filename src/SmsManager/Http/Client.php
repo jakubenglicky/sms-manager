@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /**
  * Part of jakubenglicky/sms-manager
@@ -14,7 +14,7 @@ use jakubenglicky\SmsManager\Http\Response\UserInfo;
 use jakubenglicky\SmsManager\IClient;
 use jakubenglicky\SmsManager\Message\Message;
 
-class Client implements IClient
+final class Client implements IClient
 {
     /**
      * @var GuzzleHttp\Client
@@ -38,10 +38,18 @@ class Client implements IClient
     }
 
     /**
-     * Send SMS via HTTP GET request
+     * Send SMS via HTTP POST request
      * @param Message $message
-     * @throws \Exception
-     * @return Sent|Error
+     * @return Error|Sent
+     * @throws \jakubenglicky\SmsManager\Exceptions\ApiException
+     * @throws \jakubenglicky\SmsManager\Exceptions\ContentException
+     * @throws \jakubenglicky\SmsManager\Exceptions\CreditException
+     * @throws \jakubenglicky\SmsManager\Exceptions\InvalidCredentialsException
+     * @throws \jakubenglicky\SmsManager\Exceptions\SenderException
+     * @throws \jakubenglicky\SmsManager\Exceptions\TextException
+     * @throws \jakubenglicky\SmsManager\Exceptions\UndefinedNumberException
+     * @throws \jakubenglicky\SmsManager\Exceptions\UnknownMessageTypeException
+     * @throws \jakubenglicky\SmsManager\Exceptions\WrongDataFormatException
      */
     public function send(Message $message)
     {
@@ -49,7 +57,7 @@ class Client implements IClient
             $res = $this->client->post('https://http-api.smsmanager.cz/Send', [
                 'form_params' => [
                     'apikey' => $this->apiKey,
-                    'number' => implode(',', $message->getRecepitiens()),
+                    'number' => $message->getCommaSeparateNumbers(),
                     'gateway' => $message->getMessageType(),
                     'message' => $message->getBody(),
                 ]
@@ -61,8 +69,16 @@ class Client implements IClient
     }
 
     /**
-     * Get User Info from SMS Manager account
-     * @return UserInfo|Error
+     * @return Error|UserInfo
+     * @throws \jakubenglicky\SmsManager\Exceptions\ApiException
+     * @throws \jakubenglicky\SmsManager\Exceptions\ContentException
+     * @throws \jakubenglicky\SmsManager\Exceptions\CreditException
+     * @throws \jakubenglicky\SmsManager\Exceptions\InvalidCredentialsException
+     * @throws \jakubenglicky\SmsManager\Exceptions\SenderException
+     * @throws \jakubenglicky\SmsManager\Exceptions\TextException
+     * @throws \jakubenglicky\SmsManager\Exceptions\UndefinedNumberException
+     * @throws \jakubenglicky\SmsManager\Exceptions\UnknownMessageTypeException
+     * @throws \jakubenglicky\SmsManager\Exceptions\WrongDataFormatException
      */
     public function getUserInfo()
     {

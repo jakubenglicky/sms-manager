@@ -10,14 +10,14 @@ namespace jakubenglicky\SmsManager\Http\Response;
 use jakubenglicky\SmsManager\Exceptions\ApiException;
 use jakubenglicky\SmsManager\Exceptions\ContentException;
 use jakubenglicky\SmsManager\Exceptions\CreditException;
-use jakubenglicky\SmsManager\Exceptions\TextException;
 use jakubenglicky\SmsManager\Exceptions\InvalidCredentialsException;
 use jakubenglicky\SmsManager\Exceptions\SenderException;
+use jakubenglicky\SmsManager\Exceptions\TextException;
 use jakubenglicky\SmsManager\Exceptions\UndefinedNumberException;
 use jakubenglicky\SmsManager\Exceptions\UnknownMessageTypeException;
 use jakubenglicky\SmsManager\Exceptions\WrongDataFormatException;
 
-class Error
+final class Error
 {
     /**
      * ErrorResponse constructor.

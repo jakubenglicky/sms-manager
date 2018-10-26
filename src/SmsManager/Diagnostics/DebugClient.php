@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /**
  * Part of jakubenglicky/sms-manager
@@ -13,7 +13,7 @@ use jakubenglicky\SmsManager\Http\Response\UserInfo;
 use jakubenglicky\SmsManager\IClient;
 use jakubenglicky\SmsManager\Message\Message;
 
-class DebugClient implements IClient
+final class DebugClient implements IClient
 {
     /**
      * @var string
@@ -33,29 +33,29 @@ class DebugClient implements IClient
     /**
      * Fake send for debugging
      * @param Message $message
-     * @return Sent
+     * @return Error|Sent
+     * @throws \jakubenglicky\SmsManager\Exceptions\TextException
+     * @throws \jakubenglicky\SmsManager\Exceptions\UndefinedNumberException
      */
     public function send(Message $message)
     {
         $data = '';
         $data .= $message->getBody() . '|';
-        $data .= implode(',', $message->getRecepitiens());
+        $data .= $message->getCommaSeparateNumbers();
 
         $id = uniqid();
 
         if ($message->getBody() != '') {
             file_put_contents($this->tempDir . '/' . $id . '.sms', $data);
-            return new Sent(new Response('OK|' . $id .'|' . implode(',', $message->getRecepitiens())), $message);
-        } else {
+            return new Sent(
+                new Response('OK|' . $id .'|' . $message->getCommaSeparateNumbers()),
+                $message
+            );
         }
     }
 
-    /**
-     * Get User Info from SMS Manager account
-     * @return UserInfo|Error
-     */
     public function getUserInfo()
     {
-        // TODO: Implement getUserInfo() method.
+        return new UserInfo(new Response('9999|SMSMANAGER|high'));
     }
 }

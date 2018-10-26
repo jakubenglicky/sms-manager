@@ -19,7 +19,7 @@ class ClientTest extends TestCase
     public function testSentResponse()
     {
         $msg = new Message();
-        $msg->setTo([420777111222]);
+        $msg->setTo(['+420777111222']);
         $msg->setBody('Test message');
 
 
@@ -32,7 +32,6 @@ class ClientTest extends TestCase
 
         Assert::true($sent instanceof Sent);
         Assert::true($sent->wasSent());
-        Assert::true(is_array($sent->getRecepitiens()));
         Assert::true(is_integer($sent->getRequestId()));
         Assert::true(is_string($sent->getBody()));
         Assert::same(count(explode('|', $sent->getBody())), 3);

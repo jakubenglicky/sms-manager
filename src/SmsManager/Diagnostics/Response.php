@@ -1,6 +1,5 @@
 <?php
 
-
 namespace jakubenglicky\SmsManager\Diagnostics;
 
 use Psr\Http\Message\ResponseInterface;
@@ -8,14 +7,12 @@ use Psr\Http\Message\StreamInterface;
 
 class Response implements ResponseInterface
 {
-
     private $body;
 
-    public function __construct(string $body)
+    public function __construct($body)
     {
         $this->body = $body;
     }
-
     /**
      * Retrieves the HTTP protocol version as a string.
      *
