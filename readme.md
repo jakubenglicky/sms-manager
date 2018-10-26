@@ -1,5 +1,6 @@
 [![Downloads this Month](https://img.shields.io/packagist/dm/jakubenglicky/sms-manager.svg)](https://packagist.org/packages/jakubenglicky/sms-manager)
 [![Build](https://travis-ci.org/jakubenglicky/sms-manager.svg?branch=master)](https://travis-ci.org/jakubenglicky/sms-manager)
+[![Latest version](https://img.shields.io/packagist/v/jakubenglicky/sms-manager.svg)](https://packagist.org/packages/jakubenglicky/sms-manager)
 
 SMS Manager PHP SDK
 ===========
@@ -35,3 +36,18 @@ smsmanager:
     	
 ```
 Use interface `IClient` for sending SMS in Nette.
+
+SMS Tracy Panel
+---------------
+config.local.neon
+```neon
+tracy:
+	bar:
+	    - jakubenglicky\SmsManager\Diagnostics\Panel(%tempDir%)
+
+smsmanager:
+        class: jakubenglicky\SmsManager\IClient
+        factory: jakubenglicky\SmsManager\Diagnostics\DebugClient(%tempDir%)
+```
+
+This panel was inspired by the [Nextras Mail Panel](https://github.com/nextras/mail-panel)
