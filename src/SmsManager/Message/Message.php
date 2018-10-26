@@ -115,7 +115,7 @@ final class Message
      */
     public function getCommaSeparateNumbers():string
     {
-        return implode(',', $this->getRecipients());
+        return str_replace('+', '', implode(',', $this->getRecipients()));
     }
 
     /**

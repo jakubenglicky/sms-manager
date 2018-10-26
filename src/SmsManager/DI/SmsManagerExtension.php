@@ -8,25 +8,20 @@
 
 namespace jakubenglicky\SmsManager\DI;
 
-use jakubenglicky\SmsManager\IClient;
+use jakubenglicky\SmsManager\Http\Client;
 use Nette\DI\CompilerExtension;
 
 class SmsManagerExtension extends CompilerExtension
 {
     public function loadConfiguration(): void
     {
-        $config = $this->getConfig();
-
-        if (!isset($config['apiKey'])) {
+        if (!isset($this->config['apiKey'])) {
             return;
         }
 
         $builder = $this->getContainerBuilder();
 
         $builder->addDefinition('smsmanager')
-            ->setImplement(IClient::class)
-            ->setFactory('jakubenglicky\SmsManager\Http\Client', [
-                $config['apiKey'],
-            ]);
+            ->setFactory(Client::class, [$this->config['apiKey']]);
     }
 }
