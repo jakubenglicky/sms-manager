@@ -7,14 +7,12 @@ use Psr\Http\Message\StreamInterface;
 
 class Response implements ResponseInterface
 {
-
     private $body;
 
-    public function __construct(string $body)
+    public function __construct($body)
     {
         $this->body = $body;
     }
-
     /**
      * Retrieves the HTTP protocol version as a string.
      *
@@ -40,7 +38,7 @@ class Response implements ResponseInterface
      * @param string $version HTTP protocol version
      * @return static
      */
-    public function withProtocolVersion(string $version)
+    public function withProtocolVersion($version)
     {
         // TODO: Implement withProtocolVersion() method.
     }
@@ -83,7 +81,7 @@ class Response implements ResponseInterface
      *     name using a case-insensitive string comparison. Returns false if
      *     no matching header name is found in the message.
      */
-    public function hasHeader(string $name)
+    public function hasHeader($name)
     {
         // TODO: Implement hasHeader() method.
     }
@@ -102,7 +100,7 @@ class Response implements ResponseInterface
      *    header. If the header does not appear in the message, this method MUST
      *    return an empty array.
      */
-    public function getHeader(string $name)
+    public function getHeader($name)
     {
         // TODO: Implement getHeader() method.
     }
@@ -126,7 +124,7 @@ class Response implements ResponseInterface
      *    concatenated together using a comma. If the header does not appear in
      *    the message, this method MUST return an empty string.
      */
-    public function getHeaderLine(string $name)
+    public function getHeaderLine($name)
     {
         // TODO: Implement getHeaderLine() method.
     }
@@ -146,7 +144,7 @@ class Response implements ResponseInterface
      * @return static
      * @throws \InvalidArgumentException for invalid header names or values.
      */
-    public function withHeader(string $name, $value)
+    public function withHeader($name, $value)
     {
         // TODO: Implement withHeader() method.
     }
@@ -167,7 +165,7 @@ class Response implements ResponseInterface
      * @return static
      * @throws \InvalidArgumentException for invalid header names or values.
      */
-    public function withAddedHeader(string $name, $value)
+    public function withAddedHeader($name, $value)
     {
         // TODO: Implement withAddedHeader() method.
     }
@@ -184,7 +182,7 @@ class Response implements ResponseInterface
      * @param string $name Case-insensitive header field name to remove.
      * @return static
      */
-    public function withoutHeader(string $name)
+    public function withoutHeader($name)
     {
         // TODO: Implement withoutHeader() method.
     }
@@ -192,9 +190,9 @@ class Response implements ResponseInterface
     /**
      * Gets the body of the message.
      *
-     * @return \Psr\Http\Message\StreamInterface Returns the body as a stream.
+     * @return StreamInterface Returns the body as a stream.
      */
-    public function getBody(): StreamInterface
+    public function getBody()
     {
         return $this->body;
     }
@@ -208,7 +206,7 @@ class Response implements ResponseInterface
      * immutability of the message, and MUST return a new instance that has the
      * new body stream.
      *
-     * @param \Psr\Http\Message\StreamInterface $body Body.
+     * @param StreamInterface $body Body.
      * @return static
      * @throws \InvalidArgumentException When the body is not valid.
      */
@@ -250,7 +248,7 @@ class Response implements ResponseInterface
      * @return static
      * @throws \InvalidArgumentException For invalid status code arguments.
      */
-    public function withStatus(int $code, string $reasonPhrase = '')
+    public function withStatus($code, $reasonPhrase = '')
     {
         // TODO: Implement withStatus() method.
     }

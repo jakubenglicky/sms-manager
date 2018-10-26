@@ -4,6 +4,7 @@ namespace jakubenglicky\SmsManager\Tests;
 
 use jakubenglicky\SmsManager\Message\Message;
 use jakubenglicky\SmsManager\Message\MessageType;
+use SmartEmailing\Types\PhoneNumber;
 use Tester\Assert;
 use Tester\TestCase;
 
@@ -22,9 +23,6 @@ class MessageTest extends TestCase
     public function __construct()
     {
         $this->message = new Message();
-
-        $this->message->setBody('Test message');
-        $this->message->setMessageType(MessageType::ECONOMY);
     }
 
     public function testInstance()
@@ -34,15 +32,13 @@ class MessageTest extends TestCase
 
     public function testSetTo()
     {
-        $this->message->setTo([420722111333]);
+        $this->message->setTo(['+420722111333']);
 
         Assert::true(is_array($this->message->getRecipients()));
-        Assert::same(420722111333, $this->message->getRecipients()[0]);
-
-        $this->message->setTo([420722111333,733456879]);
-
-        Assert::true(is_array($this->message->getRecipients()));
-        Assert::same(733456879, $this->message->getRecipients()[1]);
+        Assert::true($this->message->getRecipients()[0] instanceof PhoneNumber);
+        Assert::same('+420722111333', $this->message->getRecipients()[0]->getValue());
+        $this->message->setTo(['+420722111333','+420800000000']);
+        Assert::same('+420800000000', $this->message->getRecipients()[1]->getValue());
     }
 
     public function testSetBody()

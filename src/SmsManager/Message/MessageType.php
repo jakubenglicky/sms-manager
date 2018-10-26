@@ -10,7 +10,6 @@ namespace jakubenglicky\SmsManager\Message;
 
 final class MessageType
 {
-
     const ECONOMY = 'economy';
 
     const HIGH = 'high';

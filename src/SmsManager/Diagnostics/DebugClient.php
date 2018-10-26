@@ -39,14 +39,14 @@ final class DebugClient implements IClient
     {
         $data = '';
         $data .= $message->getBody() . '|';
-        $data .= implode(',', $message->getRecipients());
+        $data .= $message->getCommaSeparateNumbers();
 
         $id = uniqid();
 
         if ($message->getBody() != '') {
             file_put_contents($this->tempDir . '/' . $id . '.sms', $data);
             return new Sent(
-                new Response('OK|' . $id .'|' . implode(',', $message->getRecipients())),
+                new Response('OK|' . $id .'|' . $message->getCommaSeparateNumbers()),
                 $message
             );
         }

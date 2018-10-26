@@ -9,11 +9,14 @@ namespace jakubenglicky\SmsManager\Message;
 
 use jakubenglicky\SmsManager\Exceptions\TextException;
 use jakubenglicky\SmsManager\Exceptions\UndefinedNumberException;
+use jakubenglicky\SmsManager\Exceptions\WrongDataFormatException;
+use SmartEmailing\Types\InvalidTypeException;
+use SmartEmailing\Types\PhoneNumber;
 
 final class Message
 {
     /**
-     * @var array of recipients
+     * @var array|null
      */
     private $recipients;
 
@@ -34,16 +37,26 @@ final class Message
     }
 
     /**
-     * Set array of recipients
-     * @param array $recipients
+     * Set array of numbers
+     * @param array $numbers
      * @throws UndefinedNumberException
+     * @throws WrongDataFormatException
      */
-    public function setTo(array $recipients):void
+    public function setTo(array $numbers):void
     {
-        if (empty($recipients)) {
+        if (empty($numbers)) {
             throw new UndefinedNumberException('Define at least one number!', 201);
         }
 
+        $recipients = null;
+
+        foreach ($numbers as $number) {
+            try {
+                $recipients[] = Phonenumber::from($number);
+            } catch (InvalidTypeException $invalidTypeException) {
+                throw new WrongDataFormatException($invalidTypeException->getMessage());
+            }
+        }
         $this->recipients = $recipients;
     }
 
@@ -57,7 +70,6 @@ final class Message
         if (empty($text)) {
             throw new TextException('Text of SMS does not exist or is too long!', 202);
         }
-
         $this->text = $text;
     }
 
@@ -84,7 +96,7 @@ final class Message
     }
 
     /**
-     * Get numbers in string for API
+     * Get array of PhoneNumber objects
      * @throws UndefinedNumberException
      * @return array
      */
@@ -97,11 +109,30 @@ final class Message
     }
 
     /**
+     * Return numbers in comma separate string
+     * @return string
+     * @throws UndefinedNumberException
+     */
+    public function getCommaSeparateNumbers():string
+    {
+        return implode(',', $this->getRecipients());
+    }
+
+    /**
      * Get string of message type
      * @return string
      */
     public function getMessageType():string
     {
         return $this->messageType;
+    }
+
+    /**
+     * @deprecated
+     * @throws UndefinedNumberException
+     */
+    public function getRecepitiens()
+    {
+        return $this->getRecipients();
     }
 }

@@ -9,12 +9,9 @@
 namespace jakubenglicky\SmsManager\Http\Response;
 
 use Psr\Http\Message\ResponseInterface;
-use function explode;
-use function trim;
 
 final class UserInfo
 {
-
     /**
      * @var string $body
      */
@@ -40,7 +37,7 @@ final class UserInfo
      */
     public function __construct(ResponseInterface $response)
     {
-        $this->body = \trim((string)$response->getBody());
+        $this->body = trim((string)$response->getBody());
 
         $items = explode('|', $this->body);
 

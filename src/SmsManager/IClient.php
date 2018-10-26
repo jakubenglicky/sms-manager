@@ -8,21 +8,22 @@
 
 namespace jakubenglicky\SmsManager;
 
+use jakubenglicky\SmsManager\Http\Response\Error;
+use jakubenglicky\SmsManager\Http\Response\Sent;
+use jakubenglicky\SmsManager\Http\Response\UserInfo;
 use jakubenglicky\SmsManager\Message\Message;
 
 interface IClient
 {
-
     /**
-     * @param \jakubenglicky\SmsManager\Message\Message $message
-     * @return \jakubenglicky\SmsManager\Http\Response\Sent|\jakubenglicky\SmsManager\Error
+     * @param Message $message
+     * @return Sent|Error
      */
     public function send(Message $message);
 
     /**
      * Get User Info from SMS Manager account
-     *
-     * @return \jakubenglicky\SmsManager\UserInfo|\jakubenglicky\SmsManager\Error
+     * @return UserInfo|Error
      */
     public function getUserInfo();
 }

@@ -33,11 +33,6 @@ final class Sent
     private $requestId;
 
     /**
-     * @var array $numbers
-     */
-    private $recipients;
-
-    /**
      * @var Message
      */
     private $message;
@@ -57,10 +52,9 @@ final class Sent
             $this->sent = true;
             $this->code = 200;
             $this->requestId = (int)$items[1];
-            $this->recipients = explode(',', $items[2]);
         } else {
             $this->sent = false;
-            $this->code = (int)$items[1];
+            $this->code = (isset($items[1])) ? (int)$items[1] : 0;
         }
     }
 
@@ -98,15 +92,6 @@ final class Sent
     public function getRequestId():int
     {
         return $this->requestId;
-    }
-
-    /**
-     * Get array of recepitiens numbers
-     * @return array
-     */
-    public function getRecipients():array
-    {
-        return $this->recipients;
     }
 
     /**
