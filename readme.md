@@ -15,22 +15,23 @@ Instalation:
 
 Easy using:
 -----
+```php
+$msg = new \jakubenglicky\SmsManager\Message\Message();
+$msg->setTo(['+420777111222']);
+$msg->setBody('Message text');
 
-	$msg = new \jakubenglicky\SmsManager\Message\Message();
-    $msg->setTo([420777111222]);
-    $msg->setBody('Message text');
-
-    $client = new \jakubenglicky\SmsManager\Http\Client('api-key');
-    $client->send($msg);
-
+$client = new \jakubenglicky\SmsManager\Http\Client('api-key');
+$client->send($msg);
+```
 
 Nette DI:
 ------
-	extensions:
-		smsmanager: jakubenglicky\SmsManager\DI\SmsManagerExtension
+```neon
+extensions:
+	smsmanager: jakubenglicky\SmsManager\DI\SmsManagerExtension
 
-    smsmanager:
-    	apiKey: 'sms-manager-api-key'
+smsmanager:
+	apiKey: 'sms-manager-api-key'
     	
-    
+```
 Use interface `IClient` for sending SMS in Nette.
