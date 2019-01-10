@@ -23,7 +23,7 @@
     "nette/tester": "^2.0",
     "nette/di": "^2.4",
     "squizlabs/php_codesniffer": "*",
-    "phpstan/phpstan": "^0.10.3"
+    "phpstan/phpstan-shim": "^0.10.8"
   },
 
   "autoload": {
