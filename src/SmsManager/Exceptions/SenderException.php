@@ -7,6 +7,6 @@
 
 namespace jakubenglicky\SmsManager\Exceptions;
 
-class SenderException extends \Exception
+class SenderException extends SmsManagerException
 {
 }

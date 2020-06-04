@@ -7,6 +7,6 @@
 
 namespace jakubenglicky\SmsManager\Exceptions;
 
-class CreditException extends \Exception
+class CreditException extends SmsManagerException
 {
 }
