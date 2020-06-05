@@ -7,6 +7,6 @@
 
 namespace jakubenglicky\SmsManager\Exceptions;
 
-class InvalidCredentialsException extends SmsManagerException
+class SmsManagerException extends SmsManagerException
 {
 }

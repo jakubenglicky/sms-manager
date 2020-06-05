@@ -7,6 +7,6 @@
 
 namespace jakubenglicky\SmsManager\Exceptions;
 
-class ContentException extends \Exception
+class ContentException extends SmsManagerException
 {
 }
