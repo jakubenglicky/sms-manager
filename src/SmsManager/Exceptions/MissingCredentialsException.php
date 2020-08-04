@@ -2,11 +2,11 @@
 
 /**
  * Part of jakubenglicky/sms-manager
- * @author Jakub Englický
+ * @author Ondrej Podolinský
  */
 
 namespace jakubenglicky\SmsManager\Exceptions;
 
-class SmsManagerException extends \Exception
+class MissingCredentialsException extends SmsManagerException
 {
 }

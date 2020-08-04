@@ -8,6 +8,7 @@
 namespace jakubenglicky\SmsManager\Http;
 
 use GuzzleHttp;
+use jakubenglicky\SmsManager\Exceptions\MissingCredentialsException;
 use jakubenglicky\SmsManager\Http\Response\Error;
 use jakubenglicky\SmsManager\Http\Response\Sent;
 use jakubenglicky\SmsManager\Http\Response\UserInfo;
@@ -23,13 +24,13 @@ final class Client implements IClient
 
     /**
      * SMS Manager ApiKey
-     * @var string $apiKey
+     * @var string|null $apiKey
      */
     private $apiKey;
 
     /**
      * Client constructor.
-     * @param string $apiKey
+     * @param string|null $apiKey
      */
     public function __construct(string $apiKey)
     {
@@ -41,19 +42,13 @@ final class Client implements IClient
      * Send SMS via HTTP POST request
      * @param Message $message
      * @return Error|Sent
-     * @throws \jakubenglicky\SmsManager\Exceptions\ApiException
-     * @throws \jakubenglicky\SmsManager\Exceptions\ContentException
-     * @throws \jakubenglicky\SmsManager\Exceptions\CreditException
-     * @throws \jakubenglicky\SmsManager\Exceptions\InvalidCredentialsException
-     * @throws \jakubenglicky\SmsManager\Exceptions\SenderException
-     * @throws \jakubenglicky\SmsManager\Exceptions\TextException
-     * @throws \jakubenglicky\SmsManager\Exceptions\UndefinedNumberException
-     * @throws \jakubenglicky\SmsManager\Exceptions\UnknownMessageTypeException
-     * @throws \jakubenglicky\SmsManager\Exceptions\WrongDataFormatException
      */
     public function send(Message $message)
     {
         try {
+        	if (empty($this->apiKey)) {
+        		throw new MissingCredentialsException('Please fill apiKey.');
+	        }
             $res = $this->client->post('https://http-api.smsmanager.cz/Send', [
                 'form_params' => [
                     'apikey' => $this->apiKey,
@@ -70,19 +65,13 @@ final class Client implements IClient
 
     /**
      * @return Error|UserInfo
-     * @throws \jakubenglicky\SmsManager\Exceptions\ApiException
-     * @throws \jakubenglicky\SmsManager\Exceptions\ContentException
-     * @throws \jakubenglicky\SmsManager\Exceptions\CreditException
-     * @throws \jakubenglicky\SmsManager\Exceptions\InvalidCredentialsException
-     * @throws \jakubenglicky\SmsManager\Exceptions\SenderException
-     * @throws \jakubenglicky\SmsManager\Exceptions\TextException
-     * @throws \jakubenglicky\SmsManager\Exceptions\UndefinedNumberException
-     * @throws \jakubenglicky\SmsManager\Exceptions\UnknownMessageTypeException
-     * @throws \jakubenglicky\SmsManager\Exceptions\WrongDataFormatException
      */
     public function getUserInfo()
     {
         try {
+	        if (empty($this->apiKey)) {
+		        throw new MissingCredentialsException('Please fill apiKey.');
+	        }
             $res = $this->client->post('https://http-api.smsmanager.cz/GetUserInfo', [
                 'form_params' => [
                     'apikey' => $this->apiKey
