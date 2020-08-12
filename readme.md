@@ -43,11 +43,12 @@ config.local.neon
 ```neon
 tracy:
 	bar:
-	    - jakubenglicky\SmsManager\Diagnostics\Panel(%tempDir%)
+		- jakubenglicky\SmsManager\Diagnostics\Panel(%tempDir%)
 
-smsmanager:
-        class: jakubenglicky\SmsManager\IClient
-        factory: jakubenglicky\SmsManager\Diagnostics\DebugClient(%tempDir%)
+services:
+	smsmanager:
+		class: jakubenglicky\SmsManager\IClient
+		factory: jakubenglicky\SmsManager\Diagnostics\DebugClient(%tempDir%)
 ```
 
 This panel was inspired by the [Nextras Mail Panel](https://github.com/nextras/mail-panel)
