@@ -15,47 +15,53 @@ use SmsManager\Message\Message;
 
 final class DebugClient implements IClient
 {
-    /**
-     * @var string
-     */
-    private $tempDir;
 
-    /**
-     * DebugClient constructor.
-     * @param string $tempDir
-     */
-    public function __construct($tempDir)
-    {
-        @mkdir($tempDir . '/sms');
-        $this->tempDir = $tempDir . '/sms';
-    }
+	/**
+	 * @var string
+	 */
+	private $tempDir;
 
-    /**
-     * Fake send for debugging
-     * @param Message $message
-     * @return Error|Sent
-     * @throws \SmsManager\Exceptions\TextException
-     * @throws \SmsManager\Exceptions\UndefinedNumberException
-     */
-    public function send(Message $message)
-    {
-        $data = '';
-        $data .= $message->getBody() . '|';
-        $data .= $message->getCommaSeparateNumbers();
 
-        $id = uniqid();
+	/**
+	 * DebugClient constructor.
+	 * @param string $tempDir
+	 */
+	public function __construct($tempDir)
+	{
+		@mkdir($tempDir . '/sms');
+		$this->tempDir = $tempDir . '/sms';
+	}
 
-        if ($message->getBody() != '') {
-            file_put_contents($this->tempDir . '/' . $id . '.sms', $data);
-            return new Sent(
-                new Response('OK|' . $id .'|' . $message->getCommaSeparateNumbers()),
-                $message
-            );
-        }
-    }
 
-    public function getUserInfo()
-    {
-        return new UserInfo(new Response('9999|SMSMANAGER|high'));
-    }
+	/**
+	 * Fake send for debugging
+	 * @param Message $message
+	 * @return Error|Sent
+	 * @throws \SmsManager\Exceptions\TextException
+	 * @throws \SmsManager\Exceptions\UndefinedNumberException
+	 */
+	public function send(Message $message)
+	{
+		$data = '';
+		$data .= $message->getBody() . '|';
+		$data .= $message->getCommaSeparateNumbers();
+
+		$id = uniqid();
+
+		if ($message->getBody() != '') {
+			file_put_contents($this->tempDir . '/' . $id . '.sms', $data);
+
+			return new Sent(
+				new Response('OK|' . $id .'|' . $message->getCommaSeparateNumbers()),
+				$message
+			);
+		}
+	}
+
+
+	public function getUserInfo()
+	{
+		return new UserInfo(new Response('9999|SMSMANAGER|high'));
+	}
+
 }

@@ -15,5 +15,8 @@ jobs:
       - name: Composer
         run: docker-compose run composer update --no-interaction --prefer-dist
 
+      - name: Coding Standard
+        run: docker-compose run php vendor/bin/phpcs src/ tests/ --standard=vendor/pd/coding-standard/src/PeckaCodingStandard/ruleset.xml
+
       - name: Tests Unit
         run: docker-compose run php vendor/bin/tester tests/

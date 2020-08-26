@@ -9,4 +9,5 @@ namespace SmsManager\Exceptions;
 
 class ContentException extends SmsManagerException
 {
+
 }

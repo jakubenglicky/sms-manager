@@ -23,7 +23,8 @@
     "nette/tester": "^2.0",
     "nette/di": "^2.4",
     "phpstan/phpstan": "^0.12.32",
-    "slevomat/coding-standard": "^6.3"
+    "slevomat/coding-standard": "^6.3",
+    "pd/coding-standard": "^1.26"
   },
 
   "autoload": {

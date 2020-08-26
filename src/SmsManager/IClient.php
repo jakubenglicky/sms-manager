@@ -11,8 +11,9 @@ namespace SmsManager;
 interface IClient
 {
 
-    public function send(\SmsManager\Message\Message $message): \SmsManager\Response\Sent;
+	public function send(\SmsManager\Message\Message $message): \SmsManager\Response\Sent;
 
-    public function getUserInfo(): \SmsManager\Response\UserInfo;
+
+	public function getUserInfo(): \SmsManager\Response\UserInfo;
 
 }

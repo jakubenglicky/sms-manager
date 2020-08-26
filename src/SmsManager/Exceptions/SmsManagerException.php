@@ -10,4 +10,5 @@ namespace SmsManager\Exceptions;
 
 abstract class SmsManagerException extends \Exception
 {
+
 }

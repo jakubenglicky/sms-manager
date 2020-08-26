@@ -9,4 +9,5 @@ namespace SmsManager\Exceptions;
 
 class WrongDataFormatException extends SmsManagerException
 {
+
 }

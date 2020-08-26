@@ -12,77 +12,81 @@ use function file_get_contents;
 class Panel implements IBarPanel
 {
 
-    /**
-     * @var string
-     */
-    private $tempDir;
+	/**
+	 * @var string
+	 */
+	private $tempDir;
 
-    /** @var \Latte\Engine */
-    private $lt;
+	/** @var \Latte\Engine */
+	private $lt;
 
-    /**
-     * Panel constructor.
-     *
-     * @param string $tempDir
-     */
-    public function __construct(string $tempDir = '')
-    {
-        $this->tempDir = $tempDir . '/sms';
-        $this->lt = new Engine();
-    }
 
-    /**
-     * Render Tracy Panel
-     *
-     * @return string
-     */
-    public function getPanel(): string
-    {
-        $messages = [];
+	/**
+	 * Panel constructor.
+	 *
+	 * @param string $tempDir
+	 */
+	public function __construct(string $tempDir = '')
+	{
+		$this->tempDir = $tempDir . '/sms';
+		$this->lt = new Engine();
+	}
 
-        if (file_exists($this->tempDir)) {
-            $messages = \scandir($this->tempDir);
-        }
 
-        $result = [];
+	/**
+	 * Render Tracy Panel
+	 *
+	 * @return string
+	 */
+	public function getPanel(): string
+	{
+		$messages = [];
 
-        foreach ($messages as $sms) {
-            if ('.' === $sms || '..' === $sms) {
-                continue;
-            }
+		if (file_exists($this->tempDir)) {
+			$messages = \scandir($this->tempDir);
+		}
 
-            $data = explode('|', file_get_contents($this->tempDir . '/' . $sms));
+		$result = [];
 
-            $result[] = [
-                'body' => $data[0],
-                'numbers' => $data[1],
-            ];
-        }
+		foreach ($messages as $sms) {
+			if ('.' === $sms || '..' === $sms) {
+				continue;
+			}
 
-        $params = [
-            'messages' => $result,
-        ];
+			$data = explode('|', file_get_contents($this->tempDir . '/' . $sms));
 
-        return $this->lt->renderToString(__DIR__ . '/templates/panel.latte', $params);
-    }
+			$result[] = [
+				'body' => $data[0],
+				'numbers' => $data[1],
+			];
+		}
 
-    /**
-     * render Tracy Tab
-     *
-     * @return string
-     */
-    public function getTab(): string
-    {
-        $count = 0;
+		$params = [
+			'messages' => $result,
+		];
 
-        if (file_exists($this->tempDir)) {
-            $count = \count(scandir($this->tempDir)) - 2;
-        }
+		return $this->lt->renderToString(__DIR__ . '/templates/panel.latte', $params);
+	}
 
-        $params = [
-            'count' => $count,
-        ];
 
-        return $this->lt->renderToString(__DIR__ . '/templates/tab.latte', $params);
-    }
+	/**
+	 * render Tracy Tab
+	 *
+	 * @return string
+	 */
+	public function getTab(): string
+	{
+		$count = 0;
+
+		if (file_exists($this->tempDir)) {
+			$count = \count(scandir($this->tempDir)) - 2;
+		}
+
+		$params = [
+			'count' => $count,
+		];
+
+		return $this->lt->renderToString(__DIR__ . '/templates/tab.latte', $params);
+	}
+
 }

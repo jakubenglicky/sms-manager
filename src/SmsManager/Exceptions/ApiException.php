@@ -9,4 +9,5 @@ namespace SmsManager\Exceptions;
 
 class ApiException extends SmsManagerException
 {
+
 }

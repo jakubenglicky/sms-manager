@@ -11,47 +11,47 @@ namespace SmsManager\Response;
 final class UserInfo
 {
 
-    /**
-     * @var float $credit
-     */
-    private $credit;
+	/**
+	 * @var float $credit
+	 */
+	private $credit;
 
-    /** @var string $sender */
-    private $sender;
+	/** @var string $sender */
+	private $sender;
 
-    /**
-     * @var string $messageType
-     */
-    private $messageType;
+	/**
+	 * @var string $messageType
+	 */
+	private $messageType;
 
 
-    public function __construct(
-    	float $credit,
+	public function __construct(
+		float $credit,
 		string $sender,
 		string $messageType
-    )
-    {
-	    $this->credit = $credit;
-	    $this->sender = $sender;
-	    $this->messageType = $messageType;
-    }
+	)
+	{
+		$this->credit = $credit;
+		$this->sender = $sender;
+		$this->messageType = $messageType;
+	}
 
 
-    public function getCredit(): float
-    {
-        return (float) $this->credit;
-    }
+	public function getCredit(): float
+	{
+		return (float) $this->credit;
+	}
 
 
-    public function getSender(): string
-    {
-        return $this->sender;
-    }
+	public function getSender(): string
+	{
+		return $this->sender;
+	}
 
 
-    public function getMessageType(): string
-    {
-        return $this->messageType;
-    }
+	public function getMessageType(): string
+	{
+		return $this->messageType;
+	}
 
 }

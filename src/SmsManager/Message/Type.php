@@ -11,10 +11,10 @@ namespace SmsManager\Message;
 final class Type
 {
 
-    public const ECONOMY = 'economy';
+	public const ECONOMY = 'economy';
 
-    public const HIGH = 'high';
+	public const HIGH = 'high';
 
-    public const LOWCOST = 'lowcost';
+	public const LOWCOST = 'lowcost';
 
 }
