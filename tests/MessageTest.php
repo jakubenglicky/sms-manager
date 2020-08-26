@@ -3,7 +3,7 @@
 namespace jakubenglicky\SmsManager\Tests;
 
 use jakubenglicky\SmsManager\Message\Message;
-use jakubenglicky\SmsManager\Message\MessageType;
+use jakubenglicky\SmsManager\Message\Type;
 use SmartEmailing\Types\PhoneNumber;
 use Tester\Assert;
 use Tester\TestCase;
@@ -49,13 +49,13 @@ class MessageTest extends TestCase
 
     public function testMessageType()
     {
-        $this->message->setMessageType(MessageType::ECONOMY);
+        $this->message->setMessageType(Type::ECONOMY);
         Assert::same('economy', $this->message->getMessageType());
 
-        $this->message->setMessageType(MessageType::HIGH);
+        $this->message->setMessageType(Type::HIGH);
         Assert::same('high', $this->message->getMessageType());
 
-        $this->message->setMessageType(MessageType::LOWCOST);
+        $this->message->setMessageType(Type::LOWCOST);
         Assert::same('lowcost', $this->message->getMessageType());
     }
 }
