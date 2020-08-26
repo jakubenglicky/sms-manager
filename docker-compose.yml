@@ -12,3 +12,4 @@ services:
     volumes:
     - ./:/app
     working_dir: /app
+    command: composer update
