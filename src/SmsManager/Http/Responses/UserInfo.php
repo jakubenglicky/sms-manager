@@ -6,7 +6,7 @@
  * @author Jakub Englický
  */
 
-namespace jakubenglicky\SmsManager\Http\Response;
+namespace SmsManager\Http\Response;
 
 use Psr\Http\Message\ResponseInterface;
 

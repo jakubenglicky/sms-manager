@@ -1,13 +1,13 @@
 <?php
 
-namespace jakubenglicky\SmsManager\Tests;
+namespace SmsManager\Tests;
 
-use jakubenglicky\SmsManager\Diagnostics\Response;
-use jakubenglicky\SmsManager\Http\Response\Error;
-use jakubenglicky\SmsManager\Http\Response\Sent;
-use jakubenglicky\SmsManager\Http\Response\UserInfo;
-use jakubenglicky\SmsManager\IClient;
-use jakubenglicky\SmsManager\Message\Message;
+use SmsManager\Diagnostics\Response;
+use SmsManager\Http\Response\Error;
+use SmsManager\Http\Response\Sent;
+use SmsManager\Http\Response\UserInfo;
+use SmsManager\IClient;
+use SmsManager\Message\Message;
 
 class MockClient implements IClient
 {

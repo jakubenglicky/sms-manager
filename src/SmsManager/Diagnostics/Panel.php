@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace jakubenglicky\SmsManager\Diagnostics;
+namespace SmsManager\Diagnostics;
 
 use Latte\Engine;
 use Tracy\IBarPanel;

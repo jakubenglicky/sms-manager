@@ -5,11 +5,11 @@
  * @author Jakub Englický
  */
 
-namespace jakubenglicky\SmsManager\Message;
+namespace SmsManager\Message;
 
-use jakubenglicky\SmsManager\Exceptions\TextException;
-use jakubenglicky\SmsManager\Exceptions\UndefinedNumberException;
-use jakubenglicky\SmsManager\Exceptions\WrongDataFormatException;
+use SmsManager\Exceptions\TextException;
+use SmsManager\Exceptions\UndefinedNumberException;
+use SmsManager\Exceptions\WrongDataFormatException;
 use SmartEmailing\Types\InvalidTypeException;
 use SmartEmailing\Types\PhoneNumber;
 

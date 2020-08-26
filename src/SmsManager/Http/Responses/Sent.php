@@ -5,9 +5,9 @@
  * @author Jakub Englický
  */
 
-namespace jakubenglicky\SmsManager\Http\Response;
+namespace SmsManager\Http\Response;
 
-use jakubenglicky\SmsManager\Message\Message;
+use SmsManager\Message\Message;
 use Psr\Http\Message\ResponseInterface;
 
 final class Sent

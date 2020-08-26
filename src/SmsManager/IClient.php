@@ -6,12 +6,12 @@
  * @author Jakub Englický
  */
 
-namespace jakubenglicky\SmsManager;
+namespace SmsManager;
 
-use jakubenglicky\SmsManager\Http\Response\Error;
-use jakubenglicky\SmsManager\Http\Response\Sent;
-use jakubenglicky\SmsManager\Http\Response\UserInfo;
-use jakubenglicky\SmsManager\Message\Message;
+use SmsManager\Http\Response\Error;
+use SmsManager\Http\Response\Sent;
+use SmsManager\Http\Response\UserInfo;
+use SmsManager\Message\Message;
 
 interface IClient
 {

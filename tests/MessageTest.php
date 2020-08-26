@@ -1,9 +1,9 @@
 <?php
 
-namespace jakubenglicky\SmsManager\Tests;
+namespace SmsManager\Tests;
 
-use jakubenglicky\SmsManager\Message\Message;
-use jakubenglicky\SmsManager\Message\Type;
+use SmsManager\Message\Message;
+use SmsManager\Message\Type;
 use SmartEmailing\Types\PhoneNumber;
 use Tester\Assert;
 use Tester\TestCase;

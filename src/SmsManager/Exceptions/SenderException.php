@@ -5,7 +5,7 @@
  * @author Jakub Englický
  */
 
-namespace jakubenglicky\SmsManager\Exceptions;
+namespace SmsManager\Exceptions;
 
 class SenderException extends SmsManagerException
 {

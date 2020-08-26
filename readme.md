@@ -17,11 +17,11 @@ Instalation:
 Easy using:
 -----
 ```php
-$msg = new \jakubenglicky\SmsManager\Message\Message();
+$msg = new SmsManager\Message\Message();
 $msg->setTo(['+420777111222']);
 $msg->setBody('Message text');
 
-$client = new \jakubenglicky\SmsManager\Http\Client('api-key');
+$client = new SmsManager\Http\Client('api-key');
 $client->send($msg);
 ```
 
@@ -29,7 +29,7 @@ Nette DI:
 ------
 ```neon
 extensions:
-	smsmanager: jakubenglicky\SmsManager\DI\SmsManagerExtension
+	smsmanager: SmsManager\DI\SmsManagerExtension
 
 smsmanager:
 	apiKey: 'sms-manager-api-key'
@@ -43,12 +43,11 @@ config.local.neon
 ```neon
 tracy:
 	bar:
-		- jakubenglicky\SmsManager\Diagnostics\Panel(%tempDir%)
+	    - SmsManager\Diagnostics\Panel(%tempDir%)
 
-services:
-	smsmanager:
-		class: jakubenglicky\SmsManager\IClient
-		factory: jakubenglicky\SmsManager\Diagnostics\DebugClient(%tempDir%)
+smsmanager:
+        class: SmsManager\IClient
+        factory: SmsManager\Diagnostics\DebugClient(%tempDir%)
 ```
 
 This panel was inspired by the [Nextras Mail Panel](https://github.com/nextras/mail-panel)

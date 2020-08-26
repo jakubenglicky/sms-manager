@@ -5,17 +5,17 @@
  * @author Jakub Englický
  */
 
-namespace jakubenglicky\SmsManager\Http\Response;
+namespace SmsManager\Http\Response;
 
-use jakubenglicky\SmsManager\Exceptions\ApiException;
-use jakubenglicky\SmsManager\Exceptions\ContentException;
-use jakubenglicky\SmsManager\Exceptions\CreditException;
-use jakubenglicky\SmsManager\Exceptions\InvalidCredentialsException;
-use jakubenglicky\SmsManager\Exceptions\SenderException;
-use jakubenglicky\SmsManager\Exceptions\TextException;
-use jakubenglicky\SmsManager\Exceptions\UndefinedNumberException;
-use jakubenglicky\SmsManager\Exceptions\UnknownMessageTypeException;
-use jakubenglicky\SmsManager\Exceptions\WrongDataFormatException;
+use SmsManager\Exceptions\ApiException;
+use SmsManager\Exceptions\ContentException;
+use SmsManager\Exceptions\CreditException;
+use SmsManager\Exceptions\InvalidCredentialsException;
+use SmsManager\Exceptions\SenderException;
+use SmsManager\Exceptions\TextException;
+use SmsManager\Exceptions\UndefinedNumberException;
+use SmsManager\Exceptions\UnknownMessageTypeException;
+use SmsManager\Exceptions\WrongDataFormatException;
 
 final class Error
 {

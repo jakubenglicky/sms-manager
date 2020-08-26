@@ -5,13 +5,13 @@
  * @author Jakub Englický
  */
 
-namespace jakubenglicky\SmsManager\Diagnostics;
+namespace SmsManager\Diagnostics;
 
-use jakubenglicky\SmsManager\Http\Response\Error;
-use jakubenglicky\SmsManager\Http\Response\Sent;
-use jakubenglicky\SmsManager\Http\Response\UserInfo;
-use jakubenglicky\SmsManager\IClient;
-use jakubenglicky\SmsManager\Message\Message;
+use SmsManager\Http\Response\Error;
+use SmsManager\Http\Response\Sent;
+use SmsManager\Http\Response\UserInfo;
+use SmsManager\IClient;
+use SmsManager\Message\Message;
 
 final class DebugClient implements IClient
 {
@@ -34,8 +34,8 @@ final class DebugClient implements IClient
      * Fake send for debugging
      * @param Message $message
      * @return Error|Sent
-     * @throws \jakubenglicky\SmsManager\Exceptions\TextException
-     * @throws \jakubenglicky\SmsManager\Exceptions\UndefinedNumberException
+     * @throws \SmsManager\Exceptions\TextException
+     * @throws \SmsManager\Exceptions\UndefinedNumberException
      */
     public function send(Message $message)
     {

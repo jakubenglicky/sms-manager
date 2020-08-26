@@ -5,14 +5,14 @@
  * @author Jakub Englický
  */
 
-namespace jakubenglicky\SmsManager\Http;
+namespace SmsManager\Http;
 
 use GuzzleHttp;
-use jakubenglicky\SmsManager\Http\Response\Error;
-use jakubenglicky\SmsManager\Http\Response\Sent;
-use jakubenglicky\SmsManager\Http\Response\UserInfo;
-use jakubenglicky\SmsManager\IClient;
-use jakubenglicky\SmsManager\Message\Message;
+use SmsManager\Http\Response\Error;
+use SmsManager\Http\Response\Sent;
+use SmsManager\Http\Response\UserInfo;
+use SmsManager\IClient;
+use SmsManager\Message\Message;
 
 final class Client implements IClient
 {
@@ -41,15 +41,15 @@ final class Client implements IClient
      * Send SMS via HTTP POST request
      * @param Message $message
      * @return Error|Sent
-     * @throws \jakubenglicky\SmsManager\Exceptions\ApiException
-     * @throws \jakubenglicky\SmsManager\Exceptions\ContentException
-     * @throws \jakubenglicky\SmsManager\Exceptions\CreditException
-     * @throws \jakubenglicky\SmsManager\Exceptions\InvalidCredentialsException
-     * @throws \jakubenglicky\SmsManager\Exceptions\SenderException
-     * @throws \jakubenglicky\SmsManager\Exceptions\TextException
-     * @throws \jakubenglicky\SmsManager\Exceptions\UndefinedNumberException
-     * @throws \jakubenglicky\SmsManager\Exceptions\UnknownMessageTypeException
-     * @throws \jakubenglicky\SmsManager\Exceptions\WrongDataFormatException
+     * @throws \SmsManager\Exceptions\ApiException
+     * @throws \SmsManager\Exceptions\ContentException
+     * @throws \SmsManager\Exceptions\CreditException
+     * @throws \SmsManager\Exceptions\InvalidCredentialsException
+     * @throws \SmsManager\Exceptions\SenderException
+     * @throws \SmsManager\Exceptions\TextException
+     * @throws \SmsManager\Exceptions\UndefinedNumberException
+     * @throws \SmsManager\Exceptions\UnknownMessageTypeException
+     * @throws \SmsManager\Exceptions\WrongDataFormatException
      */
     public function send(Message $message)
     {
@@ -70,15 +70,15 @@ final class Client implements IClient
 
     /**
      * @return Error|UserInfo
-     * @throws \jakubenglicky\SmsManager\Exceptions\ApiException
-     * @throws \jakubenglicky\SmsManager\Exceptions\ContentException
-     * @throws \jakubenglicky\SmsManager\Exceptions\CreditException
-     * @throws \jakubenglicky\SmsManager\Exceptions\InvalidCredentialsException
-     * @throws \jakubenglicky\SmsManager\Exceptions\SenderException
-     * @throws \jakubenglicky\SmsManager\Exceptions\TextException
-     * @throws \jakubenglicky\SmsManager\Exceptions\UndefinedNumberException
-     * @throws \jakubenglicky\SmsManager\Exceptions\UnknownMessageTypeException
-     * @throws \jakubenglicky\SmsManager\Exceptions\WrongDataFormatException
+     * @throws \SmsManager\Exceptions\ApiException
+     * @throws \SmsManager\Exceptions\ContentException
+     * @throws \SmsManager\Exceptions\CreditException
+     * @throws \SmsManager\Exceptions\InvalidCredentialsException
+     * @throws \SmsManager\Exceptions\SenderException
+     * @throws \SmsManager\Exceptions\TextException
+     * @throws \SmsManager\Exceptions\UndefinedNumberException
+     * @throws \SmsManager\Exceptions\UnknownMessageTypeException
+     * @throws \SmsManager\Exceptions\WrongDataFormatException
      */
     public function getUserInfo()
     {

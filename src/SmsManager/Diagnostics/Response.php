@@ -1,6 +1,6 @@
 <?php
 
-namespace jakubenglicky\SmsManager\Diagnostics;
+namespace SmsManager\Diagnostics;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;

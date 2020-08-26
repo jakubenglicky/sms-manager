@@ -6,9 +6,9 @@
  * @author Jakub Englický
  */
 
-namespace jakubenglicky\SmsManager\DI;
+namespace SmsManager\DI;
 
-use jakubenglicky\SmsManager\Http\Client;
+use SmsManager\Http\Client;
 use Nette\DI\CompilerExtension;
 
 class SmsManagerExtension extends CompilerExtension
