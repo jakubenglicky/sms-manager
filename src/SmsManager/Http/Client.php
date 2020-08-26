@@ -7,54 +7,34 @@
 
 namespace SmsManager\Http;
 
-use GuzzleHttp;
-use SmsManager\Http\Response\Error;
-use SmsManager\Http\Response\Sent;
-use SmsManager\Http\Response\UserInfo;
-use SmsManager\IClient;
-use SmsManager\Message\Message;
-
-final class Client implements IClient
+final class Client implements \SmsManager\IClient
 {
+
     /**
-     * @var GuzzleHttp\Client
+     * @var \GuzzleHttp\Client
      */
     private $client;
 
     /**
-     * SMS Manager ApiKey
      * @var string $apiKey
      */
     private $apiKey;
 
-    /**
-     * Client constructor.
-     * @param string $apiKey
-     */
+
     public function __construct(string $apiKey)
     {
         $this->apiKey = $apiKey;
-        $this->client = new GuzzleHttp\Client();
+        $this->client = new \GuzzleHttp\Client();
     }
 
+
     /**
-     * Send SMS via HTTP POST request
-     * @param Message $message
-     * @return Error|Sent
-     * @throws \SmsManager\Exceptions\ApiException
-     * @throws \SmsManager\Exceptions\ContentException
-     * @throws \SmsManager\Exceptions\CreditException
-     * @throws \SmsManager\Exceptions\InvalidCredentialsException
-     * @throws \SmsManager\Exceptions\SenderException
-     * @throws \SmsManager\Exceptions\TextException
-     * @throws \SmsManager\Exceptions\UndefinedNumberException
-     * @throws \SmsManager\Exceptions\UnknownMessageTypeException
-     * @throws \SmsManager\Exceptions\WrongDataFormatException
+     * @throws \SmsManager\Exceptions\SmsManagerException|\Exception
      */
-    public function send(Message $message)
+    public function send(\SmsManager\Message\Message $message): \SmsManager\Response\Sent
     {
         try {
-            $res = $this->client->post('https://http-api.smsmanager.cz/Send', [
+            $response = $this->client->post('https://http-api.smsmanager.cz/Send', [
                 'form_params' => [
                     'apikey' => $this->apiKey,
                     'number' => $message->getCommaSeparateNumbers(),
@@ -62,35 +42,30 @@ final class Client implements IClient
                     'message' => $message->getBody(),
                 ]
             ]);
-            return new Sent($res, $message);
         } catch (\Exception $clientEx) {
-            return new Error($clientEx);
+           \SmsManager\Exceptions\Processor::process($clientEx);
         }
+
+	    return \SmsManager\Response\Sent\Factory::create($response, $message);
     }
 
+
     /**
-     * @return Error|UserInfo
-     * @throws \SmsManager\Exceptions\ApiException
-     * @throws \SmsManager\Exceptions\ContentException
-     * @throws \SmsManager\Exceptions\CreditException
-     * @throws \SmsManager\Exceptions\InvalidCredentialsException
-     * @throws \SmsManager\Exceptions\SenderException
-     * @throws \SmsManager\Exceptions\TextException
-     * @throws \SmsManager\Exceptions\UndefinedNumberException
-     * @throws \SmsManager\Exceptions\UnknownMessageTypeException
-     * @throws \SmsManager\Exceptions\WrongDataFormatException
+     * @throws \SmsManager\Exceptions\SmsManagerException|\Exception
      */
-    public function getUserInfo()
+    public function getUserInfo(): \SmsManager\Response\UserInfo
     {
         try {
-            $res = $this->client->post('https://http-api.smsmanager.cz/GetUserInfo', [
+	        $response = $this->client->post('https://http-api.smsmanager.cz/GetUserInfo', [
                 'form_params' => [
                     'apikey' => $this->apiKey
                 ]
             ]);
-            return new UserInfo($res);
         } catch (\Exception $clientEx) {
-            return new Error($clientEx);
+        	\SmsManager\Exceptions\Processor::process($clientEx);
         }
+
+	    return \SmsManager\Response\UserInfo\Factory::create($response);
     }
+
 }

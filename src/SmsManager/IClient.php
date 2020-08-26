@@ -8,22 +8,11 @@
 
 namespace SmsManager;
 
-use SmsManager\Http\Response\Error;
-use SmsManager\Http\Response\Sent;
-use SmsManager\Http\Response\UserInfo;
-use SmsManager\Message\Message;
-
 interface IClient
 {
-    /**
-     * @param Message $message
-     * @return Sent|Error
-     */
-    public function send(Message $message);
 
-    /**
-     * Get User Info from SMS Manager account
-     * @return UserInfo|Error
-     */
-    public function getUserInfo();
+    public function send(\SmsManager\Message\Message $message): \SmsManager\Response\Sent;
+
+    public function getUserInfo(): \SmsManager\Response\UserInfo;
+
 }
