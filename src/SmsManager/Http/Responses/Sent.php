@@ -12,19 +12,13 @@ use Psr\Http\Message\ResponseInterface;
 
 final class Sent
 {
-    /**
-     * @var string $body
-     */
+    /** @var string $body */
     private $body;
 
-    /*
-     * @var bool $sent
-     */
+    /** @var bool $sent */
     private $sent;
 
-    /**
-     * @var int $code
-     */
+    /** @var int $code */
     private $code;
 
     /**

@@ -12,22 +12,16 @@ use Psr\Http\Message\ResponseInterface;
 
 final class UserInfo
 {
-    /**
-     * @var string $body
-     */
+    /** @var string $body */
     private $body;
 
-    /*
-     * @var float $credit
-     */
+    /** @var float $credit */
     private $credit;
 
     /** @var string $sender */
     private $sender;
 
-    /**
-     * @var string $messageType
-     */
+    /** @var string $messageType */
     private $messageType;
 
     /**

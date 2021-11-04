@@ -16,7 +16,7 @@ use SmartEmailing\Types\PhoneNumber;
 final class Message
 {
     /**
-     * @var array|null
+     * @var PhoneNumber[]|null
      */
     private $recipients;
 
@@ -38,7 +38,7 @@ final class Message
 
     /**
      * Set array of numbers
-     * @param array $numbers
+     * @param array<string> $numbers
      * @throws UndefinedNumberException
      * @throws WrongDataFormatException
      */
@@ -98,7 +98,7 @@ final class Message
     /**
      * Get array of PhoneNumber objects
      * @throws UndefinedNumberException
-     * @return array
+     * @return PhoneNumber[]
      */
     public function getRecipients():array
     {
@@ -129,9 +129,10 @@ final class Message
 
     /**
      * @deprecated
+     * @return PhoneNumber[]
      * @throws UndefinedNumberException
      */
-    public function getRecepitiens()
+    public function getRecepitiens():array
     {
         return $this->getRecipients();
     }

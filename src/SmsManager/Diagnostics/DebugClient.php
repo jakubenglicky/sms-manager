@@ -33,11 +33,11 @@ final class DebugClient implements IClient
     /**
      * Fake send for debugging
      * @param Message $message
-     * @return Error|Sent
+     * @return Sent|null
      * @throws \jakubenglicky\SmsManager\Exceptions\TextException
      * @throws \jakubenglicky\SmsManager\Exceptions\UndefinedNumberException
      */
-    public function send(Message $message)
+    public function send(Message $message): ?Sent
     {
         $data = '';
         $data .= $message->getBody() . '|';
@@ -52,6 +52,7 @@ final class DebugClient implements IClient
                 $message
             );
         }
+		return null;
     }
 
     public function getUserInfo()
