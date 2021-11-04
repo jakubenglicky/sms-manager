@@ -52,7 +52,7 @@ final class Message
 
         foreach ($numbers as $number) {
             try {
-                $recipients[] = Phonenumber::from($number);
+                $recipients[] = PhoneNumber::from($number);
             } catch (InvalidTypeException $invalidTypeException) {
                 throw new WrongDataFormatException($invalidTypeException->getMessage());
             }

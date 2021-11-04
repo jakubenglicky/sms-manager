@@ -2,7 +2,6 @@
 
 namespace jakubenglicky\SmsManager\Tests;
 
-use jakubenglicky\SmsManager\Http\Response\Error;
 use jakubenglicky\SmsManager\Http\Response\Sent;
 use jakubenglicky\SmsManager\Http\Response\UserInfo;
 use jakubenglicky\SmsManager\Message\Message;
@@ -21,7 +20,6 @@ class ClientTest extends TestCase
         $msg = new Message();
         $msg->setTo(['+420777111222']);
         $msg->setBody('Test message');
-
 
         $client = new MockClient();
 
