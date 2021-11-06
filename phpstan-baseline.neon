@@ -1,0 +1,97 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Argument of an invalid type array\\<int, string\\>\\|false supplied for foreach, only iterables are supported\\.$#"
+			count: 1
+			path: src/SmsManager/Diagnostics/Panel.php
+
+		-
+			message: "#^Parameter \\#1 \\$var of function count expects array\\|Countable, array\\<int, string\\>\\|false given\\.$#"
+			count: 1
+			path: src/SmsManager/Diagnostics/Panel.php
+
+		-
+			message: "#^Parameter \\#2 \\$str of function explode expects string, string\\|false given\\.$#"
+			count: 1
+			path: src/SmsManager/Diagnostics/Panel.php
+
+		-
+			message: "#^Method SmsManager\\\\Diagnostics\\\\Response\\:\\:__construct\\(\\) has parameter \\$body with no typehint specified\\.$#"
+			count: 1
+			path: src/SmsManager/Diagnostics/Response.php
+
+		-
+			message: "#^Method SmsManager\\\\Diagnostics\\\\Response\\:\\:getHeader\\(\\) should return array\\<string\\> but return statement is missing\\.$#"
+			count: 1
+			path: src/SmsManager/Diagnostics/Response.php
+
+		-
+			message: "#^Method SmsManager\\\\Diagnostics\\\\Response\\:\\:getHeaderLine\\(\\) should return string but return statement is missing\\.$#"
+			count: 1
+			path: src/SmsManager/Diagnostics/Response.php
+
+		-
+			message: "#^Method SmsManager\\\\Diagnostics\\\\Response\\:\\:getHeaders\\(\\) should return array\\<array\\<string\\>\\> but return statement is missing\\.$#"
+			count: 1
+			path: src/SmsManager/Diagnostics/Response.php
+
+		-
+			message: "#^Method SmsManager\\\\Diagnostics\\\\Response\\:\\:getProtocolVersion\\(\\) should return string but return statement is missing\\.$#"
+			count: 1
+			path: src/SmsManager/Diagnostics/Response.php
+
+		-
+			message: "#^Method SmsManager\\\\Diagnostics\\\\Response\\:\\:getReasonPhrase\\(\\) should return string but return statement is missing\\.$#"
+			count: 1
+			path: src/SmsManager/Diagnostics/Response.php
+
+		-
+			message: "#^Method SmsManager\\\\Diagnostics\\\\Response\\:\\:getStatusCode\\(\\) should return int but return statement is missing\\.$#"
+			count: 1
+			path: src/SmsManager/Diagnostics/Response.php
+
+		-
+			message: "#^Method SmsManager\\\\Diagnostics\\\\Response\\:\\:hasHeader\\(\\) should return bool but return statement is missing\\.$#"
+			count: 1
+			path: src/SmsManager/Diagnostics/Response.php
+
+		-
+			message: "#^Method SmsManager\\\\Diagnostics\\\\Response\\:\\:withAddedHeader\\(\\) should return static\\(SmsManager\\\\Diagnostics\\\\Response\\) but return statement is missing\\.$#"
+			count: 1
+			path: src/SmsManager/Diagnostics/Response.php
+
+		-
+			message: "#^Method SmsManager\\\\Diagnostics\\\\Response\\:\\:withBody\\(\\) should return static\\(SmsManager\\\\Diagnostics\\\\Response\\) but return statement is missing\\.$#"
+			count: 1
+			path: src/SmsManager/Diagnostics/Response.php
+
+		-
+			message: "#^Method SmsManager\\\\Diagnostics\\\\Response\\:\\:withHeader\\(\\) should return static\\(SmsManager\\\\Diagnostics\\\\Response\\) but return statement is missing\\.$#"
+			count: 1
+			path: src/SmsManager/Diagnostics/Response.php
+
+		-
+			message: "#^Method SmsManager\\\\Diagnostics\\\\Response\\:\\:withProtocolVersion\\(\\) should return static\\(SmsManager\\\\Diagnostics\\\\Response\\) but return statement is missing\\.$#"
+			count: 1
+			path: src/SmsManager/Diagnostics/Response.php
+
+		-
+			message: "#^Method SmsManager\\\\Diagnostics\\\\Response\\:\\:withStatus\\(\\) should return static\\(SmsManager\\\\Diagnostics\\\\Response\\) but return statement is missing\\.$#"
+			count: 1
+			path: src/SmsManager/Diagnostics/Response.php
+
+		-
+			message: "#^Method SmsManager\\\\Diagnostics\\\\Response\\:\\:withoutHeader\\(\\) should return static\\(SmsManager\\\\Diagnostics\\\\Response\\) but return statement is missing\\.$#"
+			count: 1
+			path: src/SmsManager/Diagnostics/Response.php
+
+		-
+			message: "#^Property SmsManager\\\\Diagnostics\\\\Response\\:\\:\\$body has no typehint specified\\.$#"
+			count: 1
+			path: src/SmsManager/Diagnostics/Response.php
+
+		-
+			message: "#^Variable \\$response might not be defined\\.$#"
+			count: 2
+			path: src/SmsManager/Http/Client.php
+

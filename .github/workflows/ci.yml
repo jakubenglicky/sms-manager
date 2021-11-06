@@ -18,7 +18,7 @@ jobs:
       - name: Coding Standard
         run: docker-compose run php make cs
 
-      - name: Coding Standard
+      - name: PHPStan lv.8
         run: docker-compose run php make phpstan
 
       - name: Tests Unit
