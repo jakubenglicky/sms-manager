@@ -7,8 +7,12 @@ use Psr\Http\Message\StreamInterface;
 
 class Response implements ResponseInterface
 {
+	/** @var StreamInterface|string */
     private $body;
 
+	/**
+	 * @param StreamInterface|string $body
+	 */
     public function __construct($body)
     {
         $this->body = $body;
@@ -190,7 +194,7 @@ class Response implements ResponseInterface
     /**
      * Gets the body of the message.
      *
-     * @return StreamInterface Returns the body as a stream.
+     * @return StreamInterface|string Returns the body as a stream.
      */
     public function getBody()
     {

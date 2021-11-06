@@ -14,7 +14,7 @@
   "require": {
     "php": "^7.1 || ^8.0",
     "guzzlehttp/guzzle": "^6.3",
-    "smartemailing/types": "^1.0",
+    "smartemailing/types": "^1.1",
     "tracy/tracy": "^2.4",
     "latte/latte": "^2.4"
   },
@@ -23,7 +23,7 @@
     "nette/tester": "^2.0",
     "nette/di": "^2.4",
     "squizlabs/php_codesniffer": "*",
-    "phpstan/phpstan-shim": "^0.10.8"
+    "phpstan/phpstan": "^0.12"
   },
 
   "autoload": {
