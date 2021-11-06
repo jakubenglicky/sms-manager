@@ -33,7 +33,6 @@ extensions:
 
 smsmanager:
 	apiKey: 'sms-manager-api-key'
-    	
 ```
 Use interface `IClient` for sending SMS in Nette.
 
