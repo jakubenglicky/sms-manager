@@ -11,8 +11,8 @@ use SmsManager\Exceptions\TextException;
 use SmsManager\Exceptions\UndefinedNumberException;
 use SmsManager\Exceptions\UnknownMessageTypeException;
 use SmsManager\Exceptions\WrongDataFormatException;
-use SmsManager\Http\Response\Error;
 use Tester\Assert;
+use SmsManager\Exceptions\Processor;
 
 require_once __DIR__ ."/bootstrap.php";
 
@@ -22,7 +22,7 @@ class ExceptionsTest extends \Tester\TestCase
 	public function testWrongDataFormat()
 	{
 		Assert::exception(static function () {
-			$error = new Error(new \Exception('response: ERROR|102', 400));
+			Processor::process(new \Exception('response: ERROR|102', 400));
 		}, WrongDataFormatException::class, 'Sent data is in wrong format!', 102);
 	}
 
@@ -30,7 +30,7 @@ class ExceptionsTest extends \Tester\TestCase
 	public function testInvalidCredentials()
 	{
 		Assert::exception(static function () {
-			$error = new Error(new \Exception('response: ERROR|103', 401));
+			Processor::process(new \Exception('response: ERROR|103', 401));
 		}, InvalidCredentialsException::class, 'Check your SMS Manager credentials!', 103);
 	}
 
@@ -38,7 +38,7 @@ class ExceptionsTest extends \Tester\TestCase
 	public function testUnknownMessageType()
 	{
 		Assert::exception(static function () {
-			$error = new Error(new \Exception('response: ERROR|104', 400));
+			Processor::process(new \Exception('response: ERROR|104', 400));
 		}, UnknownMessageTypeException::class, 'Unknown type of message!', 104);
 	}
 
@@ -46,7 +46,7 @@ class ExceptionsTest extends \Tester\TestCase
 	public function testCredit()
 	{
 		Assert::exception(static function () {
-			$error = new Error(new \Exception('response: ERROR|105', 402));
+			Processor::process(new \Exception('response: ERROR|105', 402));
 		}, CreditException::class, 'Your credit is too low for sending SMS!', 105);
 	}
 
@@ -54,7 +54,7 @@ class ExceptionsTest extends \Tester\TestCase
 	public function testContent()
 	{
 		Assert::exception(static function () {
-			$error = new Error(new \Exception('response: ERROR|109', 400));
+			Processor::process(new \Exception('response: ERROR|109', 400));
 		}, ContentException::class, 'Your request does not contain all compulsory items!', 109);
 	}
 
@@ -62,7 +62,7 @@ class ExceptionsTest extends \Tester\TestCase
 	public function testNumber()
 	{
 		Assert::exception(static function () {
-			$error = new Error(new \Exception('response: ERROR|201', 400));
+			Processor::process(new \Exception('response: ERROR|201', 400));
 		}, UndefinedNumberException::class, 'Define at least one number!', 201);
 	}
 
@@ -70,7 +70,7 @@ class ExceptionsTest extends \Tester\TestCase
 	public function testText()
 	{
 		Assert::exception(static function () {
-			$error = new Error(new \Exception('response: ERROR|202', 400));
+			Processor::process(new \Exception('response: ERROR|202', 400));
 		}, TextException::class, 'Text of SMS does not exist or is too long!', 202);
 	}
 
@@ -78,7 +78,7 @@ class ExceptionsTest extends \Tester\TestCase
 	public function testSender()
 	{
 		Assert::exception(static function () {
-			$error = new Error(new \Exception('response: ERROR|203', 400));
+			Processor::process(new \Exception('response: ERROR|203', 400));
 		}, SenderException::class, 'Invalid parameter. You must defined sender in your SMS Manager account!', 203);
 	}
 
@@ -86,11 +86,11 @@ class ExceptionsTest extends \Tester\TestCase
 	public function testApi()
 	{
 		Assert::exception(static function () {
-			$error = new Error(new \Exception('response: ERROR|999', 500));
+			Processor::process(new \Exception('response: ERROR|999', 500));
 		}, ApiException::class, 'Unspecified problem on the SMS Manager side. You can contact support@smsmanager.cz', 500);
 
 		Assert::exception(static function () {
-			$error = new Error(new \Exception('response: ERROR|999', 503));
+			Processor::process(new \Exception('response: ERROR|999', 503));
 		}, ApiException::class, 'Unspecified problem on the SMS Manager side. You can contact support@smsmanager.cz', 503);
 	}
 
@@ -98,7 +98,7 @@ class ExceptionsTest extends \Tester\TestCase
 	public function testException()
 	{
 		Assert::exception(static function () {
-			$error = new Error(new \Exception('Error everywhere', 500));
+			Processor::process(new \Exception('Error everywhere', 500));
 		}, \Exception::class, 'Error everywhere', 500);
 	}
 

@@ -2,8 +2,6 @@
 
 namespace SmsManager\Tests;
 
-use SmsManager\Http\Response\Sent;
-use SmsManager\Http\Response\UserInfo;
 use SmsManager\Message\Message;
 use Tester\Assert;
 
@@ -15,17 +13,14 @@ class ClientTest extends \Tester\TestCase
 	public function testSentResponse()
 	{
 		$msg = new Message();
-		$msg->setTo(['+420777111222']);
+		$msg->setTo([\SmartEmailing\Types\PhoneNumber::from('+420777111222')]);
 		$msg->setBody('Test message');
 
 		$client = new MockClient();
 
-		/**
-		 * @var Sent
-		 */
 		$sent = $client->send($msg);
 
-		Assert::true($sent instanceof Sent);
+		Assert::true($sent instanceof \SmsManager\Response\Sent);
 		Assert::true($sent->wasSent());
 		Assert::true(is_integer($sent->getRequestId()));
 		Assert::true(is_string($sent->getBody()));
@@ -39,18 +34,15 @@ class ClientTest extends \Tester\TestCase
 	{
 		$client = new MockClient();
 
-		/**
-		 * @var UserInfo
-		 */
 		$info = $client->getUserInfo();
 
-		Assert::true($info instanceof UserInfo);
-		Assert::same($info->getCreditInfo(), 9999.0);
-		Assert::true(is_float($info->getCreditInfo()));
+		Assert::true($info instanceof \SmsManager\Response\UserInfo);
+		Assert::same($info->getCredit(), 9999.0);
+		Assert::true(is_float($info->getCredit()));
 		Assert::same($info->getSender(), 'SMSMANAGER');
 		Assert::true(is_string($info->getSender()));
-		Assert::same($info->getDefaultMessageType(), 'high');
-		Assert::true(is_string($info->getDefaultMessageType()));
+		Assert::same($info->getMessageType(), 'high');
+		Assert::true(is_string($info->getMessageType()));
 	}
 
 }

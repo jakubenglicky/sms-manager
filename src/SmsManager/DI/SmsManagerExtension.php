@@ -14,16 +14,22 @@ use Nette\DI\CompilerExtension;
 class SmsManagerExtension extends CompilerExtension
 {
 
+	/** @var array|null[]  */
+	protected array $defaults = [
+		'apiKey' => NULL,
+	];
+
+
 	public function loadConfiguration(): void
 	{
-		if (!isset($this->config['apiKey'])) {
-			return;
-		}
+		$config = $this->validateConfig($this->defaults);
 
 		$builder = $this->getContainerBuilder();
 
-		$builder->addDefinition('smsmanager')
-			->setFactory(Client::class, [$this->config['apiKey']]);
+		$builder->addDefinition('smsmanager.client')
+			->setFactory(Client::class, [
+				$config['apiKey'],
+			]);
 	}
 
 }

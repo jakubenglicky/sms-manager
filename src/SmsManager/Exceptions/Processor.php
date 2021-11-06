@@ -5,7 +5,7 @@ namespace SmsManager\Exceptions;
 final class Processor
 {
 
-	public static function process(\Exception $exception)
+	public static function process(\Exception $exception): void
 	{
 		$response = \explode('response:', $exception->getMessage());
 

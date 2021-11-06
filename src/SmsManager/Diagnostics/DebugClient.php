@@ -7,9 +7,6 @@
 
 namespace SmsManager\Diagnostics;
 
-use SmsManager\Http\Response\Error;
-use SmsManager\Http\Response\Sent;
-use SmsManager\Http\Response\UserInfo;
 use SmsManager\IClient;
 use SmsManager\Message\Message;
 
@@ -35,12 +32,10 @@ final class DebugClient implements IClient
 
 	/**
 	 * Fake send for debugging
-	 * @param Message $message
-	 * @return Error|Sent
 	 * @throws \SmsManager\Exceptions\TextException
 	 * @throws \SmsManager\Exceptions\UndefinedNumberException
 	 */
-	public function send(Message $message)
+	public function send(Message $message): \SmsManager\Response\Sent
 	{
 		$data = '';
 		$data .= $message->getBody() . '|';
@@ -48,20 +43,19 @@ final class DebugClient implements IClient
 
 		$id = uniqid();
 
-		if ($message->getBody() != '') {
-			file_put_contents($this->tempDir . '/' . $id . '.sms', $data);
+		file_put_contents($this->tempDir . '/' . $id . '.sms', $data);
 
-			return new Sent(
-				new Response('OK|' . $id .'|' . $message->getCommaSeparateNumbers()),
-				$message
-			);
-		}
+		return \SmsManager\Response\Sent\Factory::create(
+			new Response('OK|' . $id .'|' . $message->getCommaSeparateNumbers()),
+			$message
+		);
+
 	}
 
 
-	public function getUserInfo()
+	public function getUserInfo(): \SmsManager\Response\UserInfo
 	{
-		return new UserInfo(new Response('9999|SMSMANAGER|high'));
+		return \SmsManager\Response\UserInfo\Factory::create(new Response('9999|SMSMANAGER|high'));
 	}
 
 }

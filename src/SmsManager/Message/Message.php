@@ -16,19 +16,13 @@ final class Message
 {
 
 	/**
-	 * @var array|null
+	 * @var array<int, \SmartEmailing\Types\PhoneNumber>
 	 */
-	private $recipients;
+	private array $recipients;
 
-	/**
-	 * @var string $messageType
-	 */
-	private $messageType;
+	private string $messageType;
 
-	/**
-	 * @var string $text
-	 */
-	private $text;
+	private string $text;
 
 
 	public function __construct()
@@ -39,11 +33,11 @@ final class Message
 
 	/**
 	 * Set array of numbers
-	 * @param array $numbers
+	 * @param array<int, \SmartEmailing\Types\PhoneNumber> $numbers
 	 * @throws UndefinedNumberException
 	 * @throws WrongDataFormatException
 	 */
-	public function setTo(array $numbers):void
+	public function setTo(array $numbers): void
 	{
 		if (empty($numbers)) {
 			throw new UndefinedNumberException('Define at least one number!', 201);
@@ -67,7 +61,7 @@ final class Message
 	 * @param string $text
 	 * @throws TextException
 	 */
-	public function setBody(string $text):void
+	public function setBody(string $text): void
 	{
 		if (empty($text)) {
 			throw new TextException('Text of SMS does not exist or is too long!', 202);
@@ -80,7 +74,7 @@ final class Message
 	 * Set message (gateway) type
 	 * @param string $type
 	 */
-	public function setMessageType(string $type):void
+	public function setMessageType(string $type): void
 	{
 		$this->messageType = $type;
 	}
@@ -91,7 +85,7 @@ final class Message
 	 * @throws TextException
 	 * @return string
 	 */
-	public function getBody():string
+	public function getBody(): string
 	{
 		if (empty($this->text)) {
 			throw new TextException('Text of SMS does not exist or is too long!', 202);
@@ -104,9 +98,9 @@ final class Message
 	/**
 	 * Get array of PhoneNumber objects
 	 * @throws UndefinedNumberException
-	 * @return array
+	 * @return array<int, \SmartEmailing\Types\PhoneNumber>
 	 */
-	public function getRecipients():array
+	public function getRecipients(): array
 	{
 		if (empty($this->recipients)) {
 			throw new UndefinedNumberException('Define at least one number!', 201);
@@ -121,7 +115,7 @@ final class Message
 	 * @return string
 	 * @throws UndefinedNumberException
 	 */
-	public function getCommaSeparateNumbers():string
+	public function getCommaSeparateNumbers(): string
 	{
 		return str_replace('+', '', implode(',', $this->getRecipients()));
 	}
@@ -131,19 +125,9 @@ final class Message
 	 * Get string of message type
 	 * @return string
 	 */
-	public function getMessageType():string
+	public function getMessageType(): string
 	{
 		return $this->messageType;
-	}
-
-
-	/**
-	 * @deprecated
-	 * @throws UndefinedNumberException
-	 */
-	public function getRecepitiens()
-	{
-		return $this->getRecipients();
 	}
 
 }

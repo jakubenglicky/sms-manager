@@ -14,7 +14,7 @@ final class Factory
 		[$credit, $sender, $messageType] = $items;
 
 		return new \SmsManager\Response\UserInfo(
-			$credit,
+			(float) $credit,
 			$sender,
 			$messageType
 		);
