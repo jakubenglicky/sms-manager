@@ -13,7 +13,7 @@
 
   "require": {
     "php": "^7.1 || ^8.0",
-    "guzzlehttp/guzzle": "^6.3",
+    "guzzlehttp/guzzle": "^6.3 || ^7.0",
     "smartemailing/types": "^1.1",
     "tracy/tracy": "^2.4",
     "latte/latte": "^2.4"
