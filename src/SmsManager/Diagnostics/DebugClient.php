@@ -52,7 +52,7 @@ final class DebugClient implements IClient
                 $message
             );
         }
-		return null;
+        return null;
     }
 
     public function getUserInfo()

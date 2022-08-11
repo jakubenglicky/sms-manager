@@ -13,13 +13,16 @@ use Nette\DI\CompilerExtension;
 
 class SmsManagerExtension extends CompilerExtension
 {
-	protected $defaults = [
-		'apiKey' => null,
-	];
+    /**
+     * @var array<string, mixed>
+     */
+    protected array $defaults = [
+        'apiKey' => null,
+    ];
 
     public function loadConfiguration(): void
     {
-	    $config = $this->validateConfig($this->defaults);
+        $config = $this->validateConfig($this->defaults);
 
         $builder = $this->getContainerBuilder();
 

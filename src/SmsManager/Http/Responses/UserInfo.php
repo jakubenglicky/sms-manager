@@ -15,7 +15,7 @@ final class UserInfo
     /** @var string $body */
     private $body;
 
-    /** @var float $credit */
+    /** @var string $credit */
     private $credit;
 
     /** @var string $sender */
