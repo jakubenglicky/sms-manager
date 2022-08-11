@@ -48,3 +48,26 @@ jobs:
 
       - name: PHPStan lv. 7
         run: vendor/bin/phpstan.phar analyse -l 7 src
+
+  unit:
+    timeout-minutes: 2
+    runs-on: ubuntu-latest
+    name: Unit Tests
+    strategy:
+      matrix:
+        version: [ 7.4, 8.0, 8.1 ]
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.version }}
+
+      - name: Composer Update
+        run: composer update
+
+      - name: Nette Tester
+        run: vendor/bin/tester tests/
