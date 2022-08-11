@@ -7,12 +7,12 @@ use Psr\Http\Message\StreamInterface;
 
 class Response implements ResponseInterface
 {
-	/** @var StreamInterface|string */
+    /** @var StreamInterface|string */
     private $body;
 
-	/**
-	 * @param StreamInterface|string $body
-	 */
+    /**
+     * @param StreamInterface|string $body
+     */
     public function __construct($body)
     {
         $this->body = $body;

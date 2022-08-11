@@ -37,16 +37,16 @@ final class Client implements IClient
      */
     private $apiKey;
 
-	/**
-	 * Client constructor.
-	 * @param string $apiKey
-	 * @throws MissingCredentialsException
-	 */
+    /**
+     * Client constructor.
+     * @param string $apiKey
+     * @throws MissingCredentialsException
+     */
     public function __construct(string $apiKey)
     {
-	    if (empty($apiKey)) {
-		    throw new MissingCredentialsException('Please fill apiKey.');
-	    }
+        if (empty($apiKey)) {
+            throw new MissingCredentialsException('Please fill apiKey.');
+        }
         $this->apiKey = $apiKey;
         $this->client = new GuzzleHttp\Client();
     }
@@ -67,7 +67,7 @@ final class Client implements IClient
      */
     public function send(Message $message)
     {
-	    try {
+        try {
             $res = $this->client->post('https://http-api.smsmanager.cz/Send', [
                 'form_params' => [
                     'apikey' => $this->apiKey,
