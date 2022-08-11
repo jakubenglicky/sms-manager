@@ -1,7 +1,5 @@
 parameters:
-	autoload_directories:
-		- ./src/SmsManager/Diagnostics
-	excludes_analyse:
+	excludePaths:
 		- ./src/SmsManager/Diagnostics/Panel.php
 	ignoreErrors:
 		- '#Method jakubenglicky\\SmsManager\\Diagnostics\\Response::[A-Za-z]+\(\) should return [A-Za-z\<\>]+ but return statement is missing\.#'

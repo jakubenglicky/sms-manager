@@ -1,0 +1,12 @@
+services:
+  php:
+    image: php:8.1-cli
+    working_dir: /src
+    volumes:
+      - ./:/src
+
+  composer:
+    image: composer
+    working_dir: /src
+    volumes:
+      - ./:/src
