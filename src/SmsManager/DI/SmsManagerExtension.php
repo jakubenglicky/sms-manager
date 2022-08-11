@@ -13,9 +13,9 @@ use Nette\DI\CompilerExtension;
 
 class SmsManagerExtension extends CompilerExtension
 {
-	/**
-	 * @var array<string, mixed>
-	 */
+    /**
+     * @var array<string, mixed>
+     */
     protected array $defaults = [
         'apiKey' => null,
     ];
