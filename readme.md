@@ -1,5 +1,5 @@
 [![Downloads this Month](https://img.shields.io/packagist/dm/jakubenglicky/sms-manager.svg)](https://packagist.org/packages/jakubenglicky/sms-manager)
-[![Build](https://travis-ci.org/jakubenglicky/sms-manager.svg?branch=master)](https://travis-ci.org/jakubenglicky/sms-manager)
+[![Build](https://github.com/jakubenglicky/sms-manager/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/jakubenglicky/sms-manager)
 [![Latest version](https://img.shields.io/packagist/v/jakubenglicky/sms-manager.svg)](https://packagist.org/packages/jakubenglicky/sms-manager)
 
 SMS Manager PHP SDK
