@@ -2,6 +2,7 @@
 
 /**
  * Part of jakubenglicky/sms-manager
+ *
  * @author Jakub Englický
  */
 
@@ -38,7 +39,8 @@ final class Message
 
     /**
      * Set array of numbers
-     * @param array<string> $numbers
+     *
+     * @param  array<string> $numbers
      * @throws UndefinedNumberException
      * @throws WrongDataFormatException
      */
@@ -62,7 +64,8 @@ final class Message
 
     /**
      * Set body of SMS
-     * @param string $text
+     *
+     * @param  string $text
      * @throws TextException
      */
     public function setBody(string $text):void
@@ -75,6 +78,7 @@ final class Message
 
     /**
      * Set message (gateway) type
+     *
      * @param string $type
      */
     public function setMessageType(string $type):void
@@ -84,6 +88,7 @@ final class Message
 
     /**
      * Get text
+     *
      * @throws TextException
      * @return string
      */
@@ -97,6 +102,7 @@ final class Message
 
     /**
      * Get array of PhoneNumber objects
+     *
      * @throws UndefinedNumberException
      * @return PhoneNumber[]
      */
@@ -110,6 +116,7 @@ final class Message
 
     /**
      * Return numbers in comma separate string
+     *
      * @return string
      * @throws UndefinedNumberException
      */
@@ -120,20 +127,11 @@ final class Message
 
     /**
      * Get string of message type
+     *
      * @return string
      */
     public function getMessageType():string
     {
         return $this->messageType;
-    }
-
-    /**
-     * @deprecated
-     * @return PhoneNumber[]
-     * @throws UndefinedNumberException
-     */
-    public function getRecepitiens():array
-    {
-        return $this->getRecipients();
     }
 }

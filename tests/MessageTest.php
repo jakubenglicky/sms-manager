@@ -11,8 +11,8 @@ use Tester\TestCase;
 require_once __DIR__ ."/bootstrap.php";
 
  /**
- * @testCase
- */
+  * @testCase
+  */
 class MessageTest extends TestCase
 {
     /**

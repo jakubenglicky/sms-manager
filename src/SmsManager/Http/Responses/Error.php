@@ -2,11 +2,13 @@
 
 /**
  * Part of jakubenglicky/sms-manager
+ *
  * @author Jakub Englický
  */
 
 namespace jakubenglicky\SmsManager\Http\Response;
 
+use jakubenglicky\SmsManager\IResponse;
 use jakubenglicky\SmsManager\Exceptions\ApiException;
 use jakubenglicky\SmsManager\Exceptions\ContentException;
 use jakubenglicky\SmsManager\Exceptions\CreditException;
@@ -17,11 +19,12 @@ use jakubenglicky\SmsManager\Exceptions\UndefinedNumberException;
 use jakubenglicky\SmsManager\Exceptions\UnknownMessageTypeException;
 use jakubenglicky\SmsManager\Exceptions\WrongDataFormatException;
 
-final class Error
+final class Error implements IResponse
 {
     /**
      * ErrorResponse constructor.
-     * @param \Exception $exception
+     *
+     * @param  \Exception $exception
      * @throws ApiException
      * @throws ContentException
      * @throws CreditException

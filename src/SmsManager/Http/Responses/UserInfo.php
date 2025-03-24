@@ -8,71 +8,47 @@
 
 namespace jakubenglicky\SmsManager\Http\Response;
 
-use Psr\Http\Message\ResponseInterface;
+use jakubenglicky\SmsManager\IResponse;
 
-final class UserInfo
+final class UserInfo implements IResponse
 {
-    /** @var string $body */
-    private $body;
+    private string $body;
 
-    /** @var string $credit */
-    private $credit;
+    private string $credit;
 
-    /** @var string $sender */
-    private $sender;
+    private string $sender;
 
-    /** @var string $messageType */
-    private $messageType;
+    private string $messageType;
 
-    /**
-     * UserInfo constructor.
-     *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     */
-    public function __construct(ResponseInterface $response)
+
+    public function __construct(string $body)
     {
-        $this->body = trim((string)$response->getBody());
+        $this->body = trim($body);
 
         $items = explode('|', $this->body);
 
         [$this->credit, $this->sender, $this->messageType] = $items;
     }
 
-    /**
-     * Get full response message
-     *
-     * @return string
-     */
+
     public function getBody(): string
     {
         return $this->body;
     }
 
-    /**
-     * Get credit info
-     *
-     * @return float
-     */
+
     public function getCreditInfo(): float
     {
         return (float) $this->credit;
     }
 
-    /**
-     * Get sender
-     *
-     * @return string
-     */
+
     public function getSender(): string
     {
         return $this->sender;
     }
 
-    /**
-     * Get default message type
-     *
-     * @return string
-     */
+ 
     public function getDefaultMessageType(): string
     {
         return $this->messageType;

@@ -2,6 +2,7 @@
 
 /**
  * Part of jakubenglicky/sms-manager
+ *
  * @author Jakub Englický
  */
 
@@ -33,13 +34,15 @@ final class Client implements IClient
 
     /**
      * SMS Manager ApiKey
+     *
      * @var string $apiKey
      */
     private $apiKey;
 
     /**
      * Client constructor.
-     * @param string $apiKey
+     *
+     * @param  string $apiKey
      * @throws MissingCredentialsException
      */
     public function __construct(string $apiKey)
@@ -53,7 +56,8 @@ final class Client implements IClient
 
     /**
      * Send SMS via HTTP POST request
-     * @param Message $message
+     *
+     * @param  Message $message
      * @return Error|Sent
      * @throws ApiException
      * @throws ContentException
@@ -68,15 +72,17 @@ final class Client implements IClient
     public function send(Message $message)
     {
         try {
-            $res = $this->client->post('https://http-api.smsmanager.cz/Send', [
+            $res = $this->client->post(
+                'https://http-api.smsmanager.cz/Send', [
                 'form_params' => [
                     'apikey' => $this->apiKey,
                     'number' => $message->getCommaSeparateNumbers(),
                     'gateway' => $message->getMessageType(),
                     'message' => $message->getBody(),
                 ]
-            ]);
-            return new Sent($res, $message);
+                ]
+            );
+            return new Sent((string)$res->getBody(), $message);
         } catch (\Exception $clientEx) {
             return new Error($clientEx);
         }
@@ -97,12 +103,14 @@ final class Client implements IClient
     public function getUserInfo()
     {
         try {
-            $res = $this->client->post('https://http-api.smsmanager.cz/GetUserInfo', [
+            $res = $this->client->post(
+                'https://http-api.smsmanager.cz/GetUserInfo', [
                 'form_params' => [
                     'apikey' => $this->apiKey
                 ]
-            ]);
-            return new UserInfo($res);
+                ]
+            );
+            return new UserInfo((string)$res->getBody());
         } catch (\Exception $clientEx) {
             return new Error($clientEx);
         }
