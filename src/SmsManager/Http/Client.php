@@ -74,12 +74,15 @@ final class Client implements IClient
         try {
             $res = $this->client->post(
                 'https://http-api.smsmanager.cz/Send', [
-                'form_params' => [
-                    'apikey' => $this->apiKey,
-                    'number' => $message->getCommaSeparateNumbers(),
-                    'gateway' => $message->getMessageType(),
-                    'message' => $message->getBody(),
-                ]
+                    'form_params' => [
+                        'apikey' => $this->apiKey,
+                        'number' => $message->getCommaSeparateNumbers(),
+                        'gateway' => $message->getMessageType(),
+                        'message' => $message->getBody(),
+                    ],
+                    'headers' => [
+                        'User-Agent' => 'SmsManagerClient',
+                    ],
                 ]
             );
             return new Sent((string)$res->getBody(), $message);
